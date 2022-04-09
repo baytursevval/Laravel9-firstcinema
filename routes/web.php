@@ -14,10 +14,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/welcome', function() {
-    return view('welcome');
-});
-
 Route::get('/home2', function () {
     return view('welcome');
 });
@@ -28,7 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/home',[HomeController::class,'index'])->name('home');
-
+Route::get('admin/login', [HomeController::class,'login'])->name('admin');
 
 //Admin
 Route::get('/admin', [\App\Http\Controllers\Admin\HomeController::class,'index'])->name('adminhome');

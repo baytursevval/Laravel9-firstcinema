@@ -1,9 +1,8 @@
 @extends('layouts.admin')
 
-@section('title','Admin Panel Home Page')
+@section('title','Admin panal Home Page')
 
 @section('content')
-    aaaaaaa
+    aaaaaaaa
     @include('admin._content')
-
 @endsection
