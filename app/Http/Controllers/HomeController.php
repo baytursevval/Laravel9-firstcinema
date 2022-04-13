@@ -29,10 +29,11 @@ class HomeController extends Controller
                 return redirect()->intended('admin');
             }
             return back()->withErrors([
-                'email'=>'The provided credentails do not match our records.'
+                'email'=>'The provided credentails do not match our records.',
             ]);
         }
-        else{
+        else
+        {
             return view('admin.login');
         }
     }

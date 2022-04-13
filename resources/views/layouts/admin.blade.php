@@ -27,10 +27,12 @@
 <body>
 <div class="container-scroller">
     <!-- partial:partials/_sidebar.html -->
-@include('admin._header')
+
 @include('admin._sidebar')
+@include('admin._header')
 @yield('content')
 @include('admin._footer')
 @yield('footer')
+
 </body>
 </html>
