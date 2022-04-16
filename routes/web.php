@@ -1,19 +1,11 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FilmController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::get('/home2', function () {
     return view('welcome');
@@ -26,6 +18,9 @@ Route::get('/', function () {
 
 Route::get('/home',[HomeController::class,'index'])->name('home');
 Route::get('admin/login', [HomeController::class,'login'])->name('admin');
+
+//Route::get('/filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
+Route::get('/home1',[HomeController::class,'home1'])->name('home1');
 
 //Admin
 Route::get('/admin', [\App\Http\Controllers\Admin\HomeController::class,'index'])->name('adminhome')->middleware('auth');
@@ -43,6 +38,20 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('category/update', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin_category_update');
     Route::get('category/delete', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin_category_delete');
     Route::get('category/show', [\App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('admin_category_show');
+
+});
+Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
+//Film
+    Route::prefix('film')->group(function () {
+        Route::get('/create', [FilmController::class, 'create'])->name('admin_product_add');
+        Route::post('/store', [FilmController::class, 'store'])->name('admin_product_create');
+        Route::get('/edit/{filmid}', [FilmController::class, 'edit'])->name('admin_product_edit');
+        Route::post('/update/{filmid}', [FilmController::class, 'update'])->name('admin_product_update');
+        Route::get('/delete/{filmid}', [FilmController::class, 'destroy'])->name('admin_product_delete');
+        Route::get('/show', [FilmController::class, 'show'])->name('admin_product_show');
+
+
+
 });
 
 

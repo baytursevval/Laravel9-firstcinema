@@ -4,12 +4,23 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
     //
     public function index(){
         return view('home.index');
+    }
+
+    public function home1(){
+
+        $datalist = DB::table('Film')->get();
+       // print_r($datalist);
+        //exit();
+        return view('home.home1', ['datalist'=>$datalist]);
+
+      //  return view('home.home1');
     }
 
     public function aboutus(){
@@ -44,5 +55,11 @@ class HomeController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+    public function filmdetay($filmid){
+echo "funcfd";
+        return view('home.filmdetay',['filmid'=>$filmid]);
+    }
+
+
 
 }

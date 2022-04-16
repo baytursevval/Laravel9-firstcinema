@@ -28,16 +28,19 @@
 </head>
 
 <body>
+
+
+
+
 @include('home._header')
 
-@include('home._hero')
-@include('home.product')
+@yield('content')
 
-@section('content')
-İçerik alanı
-@show
+
 
 @include('home._footer')
+
+
 
 
 </body>

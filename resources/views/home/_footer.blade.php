@@ -1,3 +1,4 @@
+
 <!-- Footer Section Begin -->
 <footer class="footer">
     <div class="page-up">
@@ -7,7 +8,7 @@
         <div class="row">
             <div class="col-lg-3">
                 <div class="footer__logo">
-                    <a href="./index.html"><img src="{{asset('assets')}}/img/logo.png" alt=""></a>
+                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6">
@@ -41,6 +42,9 @@
     </div>
 </div>
 <!-- Search model end -->
+
+
+
 
 <!-- Js Plugins -->
 <script src="{{asset('assets')}}/js/jquery-3.3.1.min.js"></script>

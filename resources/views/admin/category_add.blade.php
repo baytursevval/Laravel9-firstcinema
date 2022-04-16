@@ -31,7 +31,7 @@
                         <h4 class="card-title">Yeni Liste</h4>
                         <div class="form-group">
                             <label>Parent</label>
-                            <select class="form-control form-control-sm" id="exampleFormControlSelect3">
+                            <select class="form-control form-control-sm" name="parent_id" >
                                 <option value="0" selected="selected">Ana Category</option>
 
                                 @foreach($datalist as $rs)
@@ -41,20 +41,20 @@
                         </div>
                         <div class="form-group">
                             <label>Title</label>
-                            <input type="text" class="form-control" aria-label="Username">
+                            <input type="text" class="form-control"  name="title">
                         </div>
                         <div class="form-group">
                             <label>Keywords</label>
-                            <input type="text" class="form-control" aria-label="Username">
+                            <input type="text" class="form-control" name="keywords" aria-label="Username">
                         </div>
                         <div class="form-group">
                             <label>Description</label>
-                            <input type="text" class="form-control" aria-label="Username">
+                            <input type="text" class="form-control" name="description" aria-label="Username">
                         </div>
 
                         <div class="form-group">
                             <label>Status</label>
-                            <select class="form-control form-control-sm" id="exampleFormControlSelect3">
+                            <select class="form-control form-control-sm" name="status">
                                 <option selected="selected">False</option>
                                 <option>True</option>
                             </select>

@@ -2,7 +2,7 @@
 <section class="hero">
     <div class="container">
         <div class="hero__slider owl-carousel">
-            <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/img/hero/hero-1.jpg">
+            <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/filmhero/1.jpg">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="hero__text">
@@ -14,7 +14,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/img/hero/hero-1.jpg">
+            <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/filmhero/2.jpg">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="hero__text">
@@ -26,7 +26,7 @@
                     </div>
                 </div>
             </div>
-            <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/img/hero/hero-1.jpg">
+            <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/filmhero/3.jpg">
                 <div class="row">
                     <div class="col-lg-6">
                         <div class="hero__text">

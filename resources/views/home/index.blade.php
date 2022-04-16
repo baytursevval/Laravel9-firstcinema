@@ -2,7 +2,7 @@
 
 @section('title','Laravel Sinema Sitesi')
 
-@section('description', )
+@section('description')
 Türkiye'nin en beğenilen sinema tanıtım sitesi..
 @endsection
 

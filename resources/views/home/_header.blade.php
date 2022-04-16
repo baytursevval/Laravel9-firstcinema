@@ -18,19 +18,20 @@
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Homepage</a></li>
-                            <li><a href="{{route('admin_category')}}">Categories <span class="arrow_carrot-down"></span></a>
+                            <li class="active"><a href="./index.html">Anasayfa</a></li>
+                            <li><a href="{{route('admin_category')}}">Kategoriler <span class="arrow_carrot-down"></span></a>
+                                <?php
+                                 $datalist = DB::table('categories')->get();
+                                 ?>
                                 <ul class="dropdown">
-                                    <li><a href="/">Korku</a></li>
-                                    <li><a href="/">Gerilim</a></li>
-                                    <li><a href="./anime-watching.html">Macera</a></li>
-                                    <li><a href="./blog-details.html">Komedi</a></li>
-                                    <li><a href="./signup.html">Polisiye</a></li>
-                                    <li><a href="./login.html">Fantastik</a></li>
+                                    @foreach ($datalist as $item)
+                                    <li><a href="/">{{$item->title}}</a></li>
+                                    @endforeach
+
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Our Blog</a></li>
-                            <li><a href="#">Contacts</a></li>
+                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="#">İletişim</a></li>
                         </ul>
                     </nav>
                 </div>
@@ -38,7 +39,7 @@
             <div class="col-lg-2">
                 <div class="header__right">
                     <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="./login.html"><span class="icon_profile"></span></a>
+                    <a href="admin/login"><span class="icon_profile"></span></a>
                 </div>
             </div>
         </div>
