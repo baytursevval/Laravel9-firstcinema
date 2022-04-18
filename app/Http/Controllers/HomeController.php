@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\DB;
 class HomeController extends Controller
 {
     //
-    public function index(){
-        return view('home.index');
+    public function home(){
+
+        $datalist = DB::table('Film')->get();
+        return view('home.index',['datalist'=>$datalist]);
     }
 
     public function home1(){
@@ -56,10 +58,25 @@ class HomeController extends Controller
         return redirect('/');
     }
     public function filmdetay($filmid){
-echo "funcfd";
-        return view('home.filmdetay',['filmid'=>$filmid]);
+        $sql="select * from Film Where id=$filmid";
+        $datalist =DB::select ($sql);
+        //$rs=$datalist[0];
+        $filmidno=['filmid'=>$filmid];
+
+        return view('home.filmdetay',$filmidno,$datalist);
     }
 
 
+
+    public function test(){
+        //$ad='ali';
+        $data=['ad'=>'ali', 'soyad'=>'veli' ];
+        $data2=['name'=>'jack', 'lname'=>'vel' ];
+        return view('home.test',$data,$data2);
+    }
+
+public function filmkategori($categori_id){
+        echo "$categori_id";
+}
 
 }

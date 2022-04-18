@@ -34,7 +34,7 @@
 @include('home.product')
 
 @section('content')
-İçerik alanı
+
 @show
 
 @include('home._footer')

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Film;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class FilmController extends Controller
 {
@@ -20,7 +21,8 @@ class FilmController extends Controller
      */
     public function index()
     {
-        //
+        $datalist = DB::table('film')->get();
+        return view('admin.film', ['datalist'=>$datalist]);
     }
 
     /**
@@ -30,7 +32,7 @@ class FilmController extends Controller
      */
     public function create()
     {
-        //
+        return view ('admin.film_add');
     }
 
     /**
@@ -41,7 +43,41 @@ class FilmController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        //$data= new Film;
+
+
+DB::table('film')->insert([
+            'user_id'=> "1",
+
+
+        'title' => $request->input('title'),
+        'keywords' => $request->input('keywords'),
+        'description' => $request->input('description'),
+        'image' => $request->input('image'),
+        'category_id' => $request->input('category_id'),
+        'detail' => $request->input('detail'),
+        'videolink' => $request->input('videolink'),
+        'status' => $request->input('status')
+
+ ])  ;
+
+        /*
+        $data->user_id=1;
+        $data->id = $request->input('id');
+        $data->title = $request->input('title');
+        $data->keywords = $request->input('keywords');
+        $data->description = $request->input('description');
+        $data->image = $request->input('image');
+        $data->category_id = $request->input('category_id');
+        $data->detail = $request->input('detail');
+        $data->videolink = $request->input('videolink');
+        $data->status = $request->input('status');
+        $data->save();
+        */
+
+        return redirect()->route('admin_film');
+
+
     }
 
     /**
@@ -75,7 +111,7 @@ class FilmController extends Controller
      */
     public function update(Request $request, Film $film)
     {
-        //
+
     }
 
     /**

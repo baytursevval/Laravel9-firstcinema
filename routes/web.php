@@ -7,22 +7,17 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/home2', function () {
-    return view('welcome');
-});
-Route::redirect('/anasayfa', '/home')->name('anasayfa');
-
-Route::get('/', function () {
+Route::get('/home1', function () {
     return view('home.index', );
 });
+Route::get('/',[HomeController::class,'home'])->name('home');
 
-Route::get('/home',[HomeController::class,'index'])->name('home');
+//Route::get('/home',[HomeController::class,'home1'])->name('home1');
 Route::get('admin/login', [HomeController::class,'login'])->name('admin');
 
-//Route::get('/filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
-Route::get('/home1',[HomeController::class,'home1'])->name('home1');
+Route::get('/filmkategori/{category_id}', [HomeController::class, 'filmkategori'])->name('filmkategori');
 
-//Admin
+//Admin********************
 Route::get('/admin', [\App\Http\Controllers\Admin\HomeController::class,'index'])->name('adminhome')->middleware('auth');
 
 Route::get('admin/login', [HomeController::class,'login'])->name('admin_login');
@@ -39,11 +34,16 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('category/delete', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin_category_delete');
     Route::get('category/show', [\App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('admin_category_show');
 
+   //film------------------------------------------
+    Route::get('film', [\App\Http\Controllers\Admin\FilmController::class, 'index'])->name('admin_film');
+    Route::get('/film/add', [FilmController::class, 'create'])->name('admin_film_add');
+    Route::post('/film/store', [FilmController::class, 'store'])->name('admin_film_store');
 });
+
 Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
-//Film
-    Route::prefix('film')->group(function () {
-        Route::get('/create', [FilmController::class, 'create'])->name('admin_product_add');
+      //Film
+        Route::prefix('film')->group(function () {
+
         Route::post('/store', [FilmController::class, 'store'])->name('admin_product_create');
         Route::get('/edit/{filmid}', [FilmController::class, 'edit'])->name('admin_product_edit');
         Route::post('/update/{filmid}', [FilmController::class, 'update'])->name('admin_product_update');
@@ -54,8 +54,9 @@ Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('fi
 
 });
 
-
-
+Route::get('/test', [HomeController::class, 'test'])->name('test');
+Route::get('/formgonder', [HomeController::class, 'formgonder'])->name('formgonder');
+Route::get('/formgoster', [HomeController::class, 'formgoster'])->name('formgoster');
 
 Route::get('/dashboard', function () {
     return view('dashboard');

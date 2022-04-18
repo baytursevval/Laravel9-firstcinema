@@ -1,5 +1,6 @@
 @extends('layouts.filmdetay')
 
+@section ('title', 'Film Detay')
 
 @section('content')
 

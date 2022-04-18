@@ -10,7 +10,7 @@
             <div class="col-lg-2">
                 <div class="header__logo">
                     <a href="./index.html">
-                        <img src="{{asset('assets')}}/img/logo.png" alt="">
+                        <img src="{{asset('assets')}}/logo.jpg" width="90" alt="">
                     </a>
                 </div>
             </div>
@@ -18,14 +18,15 @@
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Anasayfa</a></li>
+                            <li class="active"><a href="{{route('home')}}">Anasayfa</a></li>
                             <li><a href="{{route('admin_category')}}">Kategoriler <span class="arrow_carrot-down"></span></a>
                                 <?php
                                  $datalist = DB::table('categories')->get();
                                  ?>
                                 <ul class="dropdown">
                                     @foreach ($datalist as $item)
-                                    <li><a href="/">{{$item->title}}</a></li>
+
+                                    <li><a href="/filmkategori/{{$item->id}}">{{$item->title}} * {{$item->id}}</a></li>
                                     @endforeach
 
                                 </ul>
