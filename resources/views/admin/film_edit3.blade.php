@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin Panel Home Page')
+@section('title', 'Film Edit Page')
 
 @section('content')
     <div class="content-wrapper">
@@ -8,7 +8,9 @@
         <section class="content-header">
             <div class="container-fluid">
                 <div class="row ab-2">
-
+                    <div class="col-sm-6">
+                        <h3>Blank Page</h3>
+                    </div>
                     <div class="col-sm-6">
                         <ol class="breadcrumb float-sm-right">
                             <li class="breadcrumb-item"><a href="#">Home</a> </li>
@@ -23,40 +25,39 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Add Film</h3>
+                    <h3 class="card-title">Edit Category</h3>
 
                 </div>
                 <div class="card-body">
 
 
-
-
-
                     <div class="card">
                         <div class="card-body">
 
-                            <form action="{{route('admin_film_store') }}" method="post" class="forms-sample" enctype="multipart/form-data">
+                            <form action="{{route('admin_film_update',['filmid'=>$filmid])}}" method="post" class="forms-sample" enctype="multipart/form-data">
                             @csrf
 
-
+                                @foreach($data_category as $rs)
+                                    <option value="{{$rs->id}}" @if ($rs->id == $data->category_id) selected="selected" @endif </option>
+                                @endforeach
                                 <div class="form-group">
                                     <label >Title</label>
-                                    <input type="text" class="form-control" name="title" >
+                                    <input type="text" class="form-control" name="title" value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label >Keywords</label>
-                                    <input type="text" class="form-control" name="keywords" >
+                                    <input type="text" class="form-control" name="keywords" value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label >Desc</label>
-                                    <input type="text" class="form-control" name="description" >
+                                    <input type="text" class="form-control" name="description" value="">
                                 </div>
 
                                 <div class="form-group">
                                     <label >Image</label>
-                                    <input type="file" class="form-control" name="image" >
+                                    <input type="file" class="form-control" name="image" value="image">
                                 </div>
 
                                 <div class="form-group">

@@ -37,17 +37,18 @@ Route::middleware('auth')->prefix('admin')->group(function () {
    //film------------------------------------------
     Route::get('film', [\App\Http\Controllers\Admin\FilmController::class, 'index'])->name('admin_film');
     Route::get('/film/add', [FilmController::class, 'create'])->name('admin_film_add');
+    Route::post('/update/{filmid}', [FilmController::class, 'update'])->name('admin_film_update');
     Route::post('/film/store', [FilmController::class, 'store'])->name('admin_film_store');
+    Route::get('/film/delete/{filmid}', [FilmController::class, 'destroy'])->name('admin_film_delete');
+    Route::get('/film/edit/{filmid}', [FilmController::class, 'edit'])->name('admin_film_edit');
+
 });
 
 Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
       //Film
         Route::prefix('film')->group(function () {
-
         Route::post('/store', [FilmController::class, 'store'])->name('admin_product_create');
-        Route::get('/edit/{filmid}', [FilmController::class, 'edit'])->name('admin_product_edit');
-        Route::post('/update/{filmid}', [FilmController::class, 'update'])->name('admin_product_update');
-        Route::get('/delete/{filmid}', [FilmController::class, 'destroy'])->name('admin_product_delete');
+
         Route::get('/show', [FilmController::class, 'show'])->name('admin_product_show');
 
 

@@ -45,6 +45,8 @@
                                             <th> Title </th>
 
                                             <th> Kategori Id </th>
+                                            <th> Edit </th>
+                                            <th> Delete </th>
                                             <th> Detail </th>
 
                                         </tr>
@@ -53,11 +55,13 @@
                                         <tbody>
                                         @foreach($datalist as $rs)
                                         <tr>
-                                            <td></td>
+                                            <td> <img src="{{asset('')}}storage/{{$rs->image}}"></td>
                                             <td> {{$rs->id}} </td>
                                             <td> {{$rs->title}} </td>
-
                                             <td> {{$rs->category_id}} </td>
+                                            <td> <a href="{{route('admin_film_edit', ['filmid'=>$rs->id])}}"> Edit </a></td>
+                                            <td><a href="{{route('admin_film_delete', ['filmid'=>$rs->id])}}" onclick="return confirm('Are you sure?')" >Delete </a></td>
+
                                             <td> {{$rs->detail}}  </td>
                                         </tr>
 

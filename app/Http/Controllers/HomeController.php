@@ -59,11 +59,17 @@ class HomeController extends Controller
     }
     public function filmdetay($filmid){
         $sql="select * from Film Where id=$filmid";
-        $datalist =DB::select ($sql);
-        //$rs=$datalist[0];
-        $filmidno=['filmid'=>$filmid];
+        $data1 =DB::select ($sql);
+        $data=$data1[0];
 
-        return view('home.filmdetay',$filmidno,$datalist);
+        $data_category=DB::table('categories')->get();
+
+
+
+        //$rs=$datalist[0];
+        $filmid=['filmid'=>$filmid];
+
+        return view('home.filmdetay',['data'=>$data,'filmid'=>$filmid,'data_category'=>$data_category]);
     }
 
 
@@ -72,7 +78,7 @@ class HomeController extends Controller
         //$ad='ali';
         $data=['ad'=>'ali', 'soyad'=>'veli' ];
         $data2=['name'=>'jack', 'lname'=>'vel' ];
-        return view('home.test',$data,$data2);
+        return view('test');
     }
 
 public function filmkategori($categori_id){

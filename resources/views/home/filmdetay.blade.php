@@ -12,14 +12,22 @@
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
                         <?php
-                        $sql="select * from Film Where id=$filmid";
-                        $datalist =DB::select ($sql);
-                        $rs=$datalist[0];
+
+                        //"$rs=$data[0];
+                        echo $data->title;
+
+
+foreach ($data_category as $rs)
+            if ($rs->id == $data->category_id)
+                $cname=$rs->title;
+echo $cname;
+exit();
+
 
                         ?>
                         <a href="./index.html"><i class="fa fa-home"></i> Ana Sayfa</a>
                         <a href="./categories.html">Kategoriler</a>
-                        <span>Category ID={{$rs->category_id}}</span>
+                        <span>Category ID={{$rs->title}}</span>
                     </div>
                 </div>
             </div>

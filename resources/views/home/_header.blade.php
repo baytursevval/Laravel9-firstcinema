@@ -9,8 +9,8 @@
         <div class="row">
             <div class="col-lg-2">
                 <div class="header__logo">
-                    <a href="./index.html">
-                        <img src="{{asset('assets')}}/logo.jpg" width="90" alt="">
+                    <a href="{{route('home')}}">
+                        <img src="{{asset('assets')}}/mylogo.png" width="70" alt="">
                     </a>
                 </div>
             </div>
@@ -26,7 +26,7 @@
                                 <ul class="dropdown">
                                     @foreach ($datalist as $item)
 
-                                    <li><a href="/filmkategori/{{$item->id}}">{{$item->title}} * {{$item->id}}</a></li>
+                                    <li><a href="/filmkategori/{{$item->id}}">{{$item->title}} </a></li>
                                     @endforeach
 
                                 </ul>
