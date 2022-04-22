@@ -55,7 +55,7 @@
                                         <tbody>
                                         @foreach($datalist as $rs)
                                         <tr>
-                                            <td> <img src="{{asset('')}}storage/{{$rs->image}}"></td>
+                                            <td> <img src="{{asset('')}}storage/{{$rs->image}}" style="width: 50px; height:50px"></td>
                                             <td> {{$rs->id}} </td>
                                             <td> {{$rs->title}} </td>
                                             <td> {{$rs->category_id}} </td>

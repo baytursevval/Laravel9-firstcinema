@@ -17,17 +17,18 @@
             <div class="col-lg-6 grid-margin stretch-card">
                 <div class="card">
                     <div class="card-body">
-                        <h4 class="card-title">Listem </h4>
-                        @auth
-                            yetkili
+                        <h4 class="card-title">Kategori </h4>
+                       @auth
                         @endauth
                         <div class="table-responsive">
                             <table class="table">
                                 <thead>
                                 <tr>
-                                    <th>Adı</th>
-                                    <th>Oluşturma Tarihi</th>
+                                    <th>Id</th>
+                                    <th>Tür</th>
                                     <th>Durum</th>
+                                    <th>Düzenleme</th>
+                                    <th>Silme</th>
                                 </tr>
                                 </thead>
                                 <tbody>
@@ -37,13 +38,16 @@
                                 @foreach($datalist as $rs)
                                     <tr>
                                         <td>{{$rs->id}}</td>
-                                        <td>{{$rs->parent_id}}</td>
                                         <td>{{$rs->title}}</td>
                                         <td>{{$rs->status}}</td>
-                                        <td>Edit</td>
-                                        <td>Delete</td>
+                                        <td><a href="{{route('admin_category_edit', ['id'=>$rs->id])}}">Edit</a></td>
+                                        <td><a href="{{route('admin_category_delete', ['id'=>$rs->id])}}" onclick="return confirm('Delete ! Are you sure?')">Delete</a></td>
                                     </tr>
                                 @endforeach
+                        </div>
+                        <button style="color: white" type="submit" class="btn btn-success btn-fw"><a href="{{route('admin_category_add')}}">Yeni Kategori</a> </button>
+
+                    </div>
                             </table>
                         </div>
                     </div>

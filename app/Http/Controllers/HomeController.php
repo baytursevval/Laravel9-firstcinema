@@ -11,13 +11,13 @@ class HomeController extends Controller
     //
     public function home(){
 
-        $datalist = DB::table('Film')->get();
+        $datalist = DB::table('Films')->limit(8)->get();
         return view('home.index',['datalist'=>$datalist]);
     }
 
     public function home1(){
 
-        $datalist = DB::table('Film')->get();
+        $datalist = DB::table('Films')->get();
        // print_r($datalist);
         //exit();
         return view('home.home1', ['datalist'=>$datalist]);
@@ -57,10 +57,12 @@ class HomeController extends Controller
         $request->session()->regenerateToken();
         return redirect('/');
     }
+
     public function filmdetay($filmid){
-        $sql="select * from Film Where id=$filmid";
-        $data1 =DB::select ($sql);
-        $data=$data1[0];
+
+        $datalist= DB:: table('films')->where('id', $filmid)->get();
+        $data=$datalist[0];
+
 
         $data_category=DB::table('categories')->get();
 
@@ -75,6 +77,11 @@ class HomeController extends Controller
 
 
     public function test(){
+        echo Auth::user()->name;
+        exit();
+        $user= Auth::user();
+
+        echo $user->name ."<br>";
         //$ad='ali';
         $data=['ad'=>'ali', 'soyad'=>'veli' ];
         $data2=['name'=>'jack', 'lname'=>'vel' ];
@@ -82,7 +89,9 @@ class HomeController extends Controller
     }
 
 public function filmkategori($categori_id){
-        echo "$categori_id";
+
+    $datalist = DB::table('Films')->where('category_id', $categori_id)->limit('8')->get();
+        return view('home.filmkategori', ['datalist'=>$datalist]);
 }
 
 }

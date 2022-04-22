@@ -14,7 +14,7 @@
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
-                            <h5 class="mb-0 font-weight-normal">Henryyyy Klein</h5>
+                            <h5 class="mb-0 font-weight-normal"> @php echo Auth::user()->name @endphp </h5>
                             <span>Gold Member</span>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-playlist-play"></i>
               </span>
-                    <span class="menu-title">Filmlerim</span>
+                    <span class="menu-title">Filmler</span>
                 </a>
             </li>
             <li class="nav-item menu-items">
@@ -87,7 +87,7 @@
               <span class="menu-icon">
                 <i class="mdi mdi-chart-bar"></i>
               </span>
-                    <span class="menu-title">Listem</span>
+                    <span class="menu-title">Kategoriler</span>
                 </a>
             </li>
             <li class="nav-item menu-items">

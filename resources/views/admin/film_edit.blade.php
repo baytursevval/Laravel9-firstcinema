@@ -40,9 +40,11 @@
 
 
                                 <label for="exampleSelectGender">Category </label>
-                                <select class="form-control" name="category_id">
+                                <select class="form-control" name="category_id" >
                                     @foreach($data_category as $rs)
-                                        <option value="{{$rs->id}}"> {{$rs->title}} </option>
+                                        <option @if   ($rs->id == $data->category_id) selected="selected"
+                                                @endif
+                                                value="{{$rs->id}}"> {{$rs->title}} </option>
                                     @endforeach
                                 </select>
 
@@ -85,7 +87,7 @@
                                         <option value="False">False</option>
                                     </select>
                                 </div>
-                                
+
 
 
                                 <button type="submit" class="btn btn-primary mr-2">Update</button>

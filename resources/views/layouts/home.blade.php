@@ -29,8 +29,8 @@
 
 <body>
 @include('home._header')
+@yield('slider')
 
-@include('home._hero')
 @include('home.product')
 
 @section('content')

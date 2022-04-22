@@ -10,7 +10,7 @@
             <div class="col-lg-2">
                 <div class="header__logo">
                     <a href="{{route('home')}}">
-                        <img src="{{asset('assets')}}/mylogo.png" width="70" alt="">
+                        <img src="{{asset('assets')}}/mylogo.png" width="100px" height="50px">
                     </a>
                 </div>
             </div>
@@ -39,8 +39,14 @@
             </div>
             <div class="col-lg-2">
                 <div class="header__right">
-                    <a href="#" class="search-switch"><span class="icon_search"></span></a>
-                    <a href="admin/login"><span class="icon_profile"></span></a>
+                    <a href="#" class="search-switch"> <span class="icon_search"></span></a>
+                    @guest
+                    <a href="{{route('admin_login')}}"><span class="icon_profile"></span> Giriş Yap</a>
+                    @endguest
+
+                    @auth
+                        <a href="{{route('admin_logout')}}"><span class="icon_profile"></span> Çıkış Yap</a>
+                    @endauth
                 </div>
             </div>
         </div>

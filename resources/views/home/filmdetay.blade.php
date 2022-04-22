@@ -14,20 +14,20 @@
                         <?php
 
                         //"$rs=$data[0];
-                        echo $data->title;
+                      //  echo $data->title;
 
 
 foreach ($data_category as $rs)
             if ($rs->id == $data->category_id)
                 $cname=$rs->title;
-echo $cname;
-exit();
+
+
 
 
                         ?>
-                        <a href="./index.html"><i class="fa fa-home"></i> Ana Sayfa</a>
-                        <a href="./categories.html">Kategoriler</a>
-                        <span>Category ID={{$rs->title}}</span>
+                        <a href="{{route('home')}}"><i class="fa fa-home"></i> Ana Sayfa</a>
+                        <a href="#">Kategoriler</a>
+                        <span><a href="{{route('filmkategori',['category_id'=>$data->category_id])}}"  >  {{$cname}} Filmleri </a>   </span>
                     </div>
                 </div>
             </div>
@@ -41,7 +41,7 @@ exit();
             <div class="anime__details__content">
                 <div class="row">
                     <div class="col-lg-3">
-                        <div class="anime__details__pic set-bg" data-setbg="{{asset('assets')}}{{$rs->image}}" >
+                        <div class="anime__details__pic set-bg" data-setbg="{{asset('')}}storage/{{$data->image}}" >
                             <div class="comment"><i class="fa fa-comments"></i> 11</div>
                             <div class="view"><i class="fa fa-eye"></i> 9141</div>
                         </div>
@@ -49,10 +49,10 @@ exit();
                     <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
-                                <h3>  {{$rs->title}}    </h3>
+                                <h3>  {{$data->title}}    </h3>
 
 
-                                <span>{{$rs->description}}</span>
+                                <span>{{$data->description}}</span>
                             </div>
                             <div class="anime__details__rating">
                                 <div class="rating">
@@ -64,7 +64,7 @@ exit();
                                 </div>
                                 <span>1.029 Votes</span>
                             </div>
-                            <p>{{$rs->detail}}</p>
+                            <p>{{$data->detail}}</p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
@@ -159,15 +159,23 @@ exit();
                             </div>
                         </div>
                     </div>
+                    @auth()
                     <div class="anime__details__form">
                         <div class="section-title">
-                            <h5>Your Comment</h5>
+                            <h5>Yorum Ekle</h5>
                         </div>
                         <form action="#">
                             <textarea placeholder="Your Comment"></textarea>
                             <button type="submit"><i class="fa fa-location-arrow"></i> Review</button>
                         </form>
                     </div>
+                    @endauth
+
+                    @guest
+                        LOGIN
+
+                    @endguest
+
                 </div>
                 <div class="col-lg-4 col-md-4">
                     <div class="anime__details__sidebar">
