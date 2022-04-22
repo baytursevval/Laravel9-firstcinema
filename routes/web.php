@@ -25,17 +25,18 @@ Route::post('/admin/logincheck', [HomeController::class,'logincheck'])->name('ad
 Route::get('admin/logout', [HomeController::class,'logout'])->name('admin_logout');
 
 Route::middleware('auth')->prefix('admin')->group(function () {
+    //category***********************
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class,'index'])->name('admin_category');
 
     Route::get('category', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin_category');
     Route::get('category/add', [\App\Http\Controllers\Admin\CategoryController::class, 'add'])->name('admin_category_add');
     Route::post('category/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('admin_category_create');
     Route::get('category/edit/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin_category_edit');
-    Route::post('category/update', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin_category_update');
+    Route::post('category/update/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin_category_update');
     Route::get('category/delete/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin_category_delete');
     Route::get('category/show', [\App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('admin_category_show');
 
-   //film------------------------------------------
+   //film*********************
     Route::get('film', [\App\Http\Controllers\Admin\FilmController::class, 'index'])->name('admin_film');
     Route::get('/film/add', [FilmController::class, 'create'])->name('admin_film_add');
     Route::post('/update/{filmid}', [FilmController::class, 'update'])->name('admin_film_update');
@@ -43,8 +44,23 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/film/delete/{filmid}', [FilmController::class, 'destroy'])->name('admin_film_delete');
     Route::get('/film/edit/{filmid}', [FilmController::class, 'edit'])->name('admin_film_edit');
 
+    //image********************
+    Route::prefix('image')->group(function (){
+
+    Route::get('create', [ImageController::class, 'create'])->name('admin_image_add');
+    Route::post('store', [ImageController::class, 'store'])->name('admin_image_update');
+    Route::post('delete/{id}', [ImageController::class, 'destroy'])->name('admin_image_store');
+    Route::get('show', [ImageController::class, 'show'])->name('admin_image_delete');
+
+});
+
+
 });
 Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
+
+
+
+
 
 
 Route::get('/test', [HomeController::class, 'test'])->name('test');
