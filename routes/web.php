@@ -7,9 +7,6 @@ use Illuminate\Support\Facades\Route;
 
 
 
-Route::get('/home1', function () {
-    return view('home.index', );
-});
 Route::get('/',[HomeController::class,'home'])->name('home');
 
 //Route::get('/home',[HomeController::class,'home1'])->name('home1');

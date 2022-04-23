@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Film;
 use Illuminate\Http\Request;
+use Illuminate\Session\Store;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
@@ -47,7 +48,7 @@ class FilmController extends Controller
      */
     public function store(Request $request )
     {
-        $data=new Film();
+        $data=new Film;
 
         $data->category_id=$request->input('category_id');
         //$data->update(15);
@@ -73,9 +74,11 @@ class FilmController extends Controller
         $data->keywords = $request->input('keywords');
         $data->description = $request->input('description');
         $data-> image=  Storage::putFile('images', $request->file('image'));
+        $data-> image_slider=  Storage::putFile('images_slider', $request->file('image_slider'));
+
         $data->category_id = $request->input('category_id');
         $data->detail = $request->input('detail');
-        $data->videolink = $request->input('videolink');
+        $data-> videolink=  Storage::putFile('videos', $request->file('videolink'));
         $data->status = $request->input('status');
         $data->save();
 
@@ -120,31 +123,22 @@ class FilmController extends Controller
      */
     public function update(Request $request, Film $film, $filmid)
     {
-        echo "eerrr";
-
-        DB::table('films')->where('id',$filmid )-> update( [
-            'user_id'=> "1",
-            'title' => $request->input('title'),
-            'keywords' => $request->input('keywords'),
-            'description' => $request->input('description'),
-            'image' => Storage::putFile('images', $request->file('image')),
-            'category_id' => $request->input('category_id'),
-            'detail' => $request->input('detail'),
-            'videolink' => $request->input('videolink'),
-            'status' => $request->input('status')
-        ])  ;
-    /*
-        $data= Film::find($filmid);
+        $data=Film::find($filmid);
         $data->title = $request->input('title');
         $data->keywords = $request->input('keywords');
         $data->description = $request->input('description');
-        $data->image = $request->input('image');
+
+        $data-> image=  Storage::putFile('images', $request->file('image'));
+    //    $data-> image_slider=  Storage::putFile('images_slider', $request->file('image_slider'));
+
         $data->category_id = $request->input('category_id');
         $data->detail = $request->input('detail');
-        $data->videolink = $request->input('videolink');
+
+   //     $data-> videolink=  Storage::putFile('videos', $request->file('videolink'));
+
         $data->status = $request->input('status');
         $data->save();
-      */
+
         return redirect()->route('admin_film');
     }
 

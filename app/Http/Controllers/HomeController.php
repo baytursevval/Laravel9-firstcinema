@@ -11,8 +11,17 @@ class HomeController extends Controller
     //
     public function home(){
 
-        $datalist = DB::table('Films')->limit(8)->get();
-        return view('home.index',['datalist'=>$datalist]);
+         $datalist_slider=DB::table('Films')-> where('image_slider','>','')->orderBy('image_slider','desc')->limit(3)->get();
+     //   foreach ($datalist_slider as $rs)             echo $rs->title. "<br>";
+
+
+        $datalist_son = DB::table('Films')->limit(8)->orderBy('id','desc')->get();
+        $datalist_populer = DB::table('Films')->limit(4)->get();
+        return view('home.index',['datalist_slider'=>$datalist_slider,
+            'datalist_son'=>$datalist_son,
+            'datalist_populer'=>$datalist_populer]);
+
+
     }
 
     public function home1(){
@@ -77,15 +86,11 @@ class HomeController extends Controller
 
 
     public function test(){
-        echo Auth::user()->name;
-        exit();
-        $user= Auth::user();
 
-        echo $user->name ."<br>";
         //$ad='ali';
         $data=['ad'=>'ali', 'soyad'=>'veli' ];
         $data2=['name'=>'jack', 'lname'=>'vel' ];
-        return view('test');
+        return view('home.test');
     }
 
 public function filmkategori($categori_id){

@@ -21,11 +21,13 @@ return new class extends Migration
             $table->string('keywords')->nullable();
             $table->string('description')->nullable();
             $table->string('image')->nullable();
+            $table->string('image_slider')->nullable();
             $table->string('category_id')->nullable();
             $table->text('detail')->nullable();
             $table->string('videolink')->nullable();
             $table->string('userid')->nullable();
             $table->string('status')->default('False');
+            $table->integer('point')->default(0);
 
             $table->timestamps();
         });

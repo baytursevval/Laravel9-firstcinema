@@ -60,6 +60,11 @@
                                 </div>
 
                                 <div class="form-group">
+                                    <label >ImageSlider</label>
+                                    <input type="file" class="form-control" name="image_slider" >
+                                </div>
+
+                                <div class="form-group">
                                     <label for="exampleSelectGender">Category </label>
                                     <select class="form-control" name="category_id">
                                      @foreach($data_category as $rs)
@@ -74,8 +79,9 @@
                                 </div>
                                 <div class="form-group">
                                     <label >videolink</label>
-                                    <input type="text" class="form-control" name="videolink" >
+                                    <input type="file" class="form-control" name="videolink" >
                                 </div>
+
                                 <div class="form-group">
                                     <label for="exampleSelectGender">Status</label>
                                     <select class="form-control" name="status">

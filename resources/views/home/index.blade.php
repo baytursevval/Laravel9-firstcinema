@@ -7,42 +7,47 @@
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
-                <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/filmhero/1.jpg">
+
+                <div class="hero__items set-bg" data-setbg="{{asset('')}}storage/{{$datalist_slider[0]->image_slider}}">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
                                 <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[0]->id])}}" ><h2>{{$datalist_slider[0]->title}}</h2></a>
+
+                                <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/filmhero/2.jpg">
+
+                <div class="hero__items set-bg" data-setbg="{{asset('')}}storage/{{$datalist_slider[1]->image_slider}}">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
                                 <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[1]->id])}}" ><h2>{{$datalist_slider[1]->title}}</h2></a>
+
+                                <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="hero__items set-bg" data-setbg="{{asset('assets')}}/filmhero/3.jpg">
+
+                <div class="hero__items set-bg" data-setbg="{{asset('')}}storage/{{$datalist_slider[2]->image_slider}}">
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
                                 <div class="label">Adventure</div>
-                                <h2>Fate / Stay Night: Unlimited Blade Works</h2>
-                                <p>After 30 days of travel across the world...</p>
-                                <a href="#"><span>Watch Now</span> <i class="fa fa-angle-right"></i></a>
+                                <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[2]->id])}}" ><h2>{{$datalist_slider[2]->title}}</h2></a>
+
+                                <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
                 </div>
+
+
             </div>
         </div>
     </section>
@@ -71,7 +76,7 @@
                         </div>
                         <div class="row">
 
-                                @foreach($datalist as $rs)
+                                @foreach($datalist_son as $rs)
 
                                     <div class="col-lg-3 col-md-6 col-sm-6">
                                         <div class="product__item">
@@ -101,13 +106,16 @@
                 </div>
             </div>
 
+
+
             <div class="row">
                 <div class="col-lg-10">
                     <div class="trending__product" >
                         <div class="row" >
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                    <h4>PAPULER OLANLAR</h4>
+                                    <h4>PAPULER OLANLAR
+                                    </h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
@@ -118,7 +126,7 @@
                         </div>
                         <div class="row">
 
-                            @foreach($datalist as $rs)
+                            @foreach($datalist_populer as $rs)
 
                                 <div class="col-lg-3 col-md-6 col-sm-6">
                                     <div class="product__item">
