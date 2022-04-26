@@ -43,8 +43,8 @@
                                             <th> Resim </th>
                                             <th> ID </th>
                                             <th> Title </th>
-
                                             <th> Kategori Id </th>
+                                            <th> Resim Gallery</th>
                                             <th> Edit </th>
                                             <th> Delete </th>
                                             <th> Detail </th>
@@ -62,8 +62,12 @@
                                             <td> {{$rs->id}} </td>
                                             <td> {{$rs->title}} </td>
                                             <td> {{$rs->category_id}} </td>
-                                            <td> <a href="{{route('admin_film_edit', ['filmid'=>$rs->id])}}"> Edit </a></td>
-                                            <td><a href="{{route('admin_film_delete', ['filmid'=>$rs->id])}}" onclick="return confirm('Are you sure?')" >Delete </a></td>
+                                            <th> <a href="{{route('admin_image_add', ['film_id'=>$rs->id])}}" onclick="return !window.open(this.href, '','top=50 left=100 width=1100, height=700')">
+                                                    <img src="{{asset(('assets/admin/gallery/006.png'))}}"></a> </th>
+                                            <td> <a href="{{route('admin_film_edit', ['filmid'=>$rs->id])}}"> <i class="mdi mdi-tooltip-edit"></i> </a></td>
+                                            <td><a href="{{route('admin_film_delete', ['filmid'=>$rs->id])}}" onclick="return confirm('Are you sure?')" > <div class="col-sm-6 col-md-4 col-lg-3">
+                                                        <i class="mdi mdi-delete"></i>
+                                                    </div> </a></td>
 
                                             <td> {{$rs->detail}}  </td>
                                         </tr>

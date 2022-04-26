@@ -65,13 +65,13 @@
 
                         <div class="form-group">
                             <label >Image</label>
-                            <input type="file" class="form-control" name="image" value="{{$data->image}}">
+                            <input type="file" class="form-control" name="image" >
 
                         </div>
 
                                 <div class="form-group">
                                     <label >Image Slider</label>
-                                    <input type="file" class="form-control" name="image_slider" value="{{$data->image_slider}}" >
+                                    <input type="file" class="form-control" name="image_slider" >
                                 </div>
 
                                 <div class="form-group">

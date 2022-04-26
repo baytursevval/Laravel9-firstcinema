@@ -4,6 +4,7 @@
 
 @section('slider')
     <!-- Hero Section Begin -->
+
     <section class="hero">
         <div class="container">
             <div class="hero__slider owl-carousel">
@@ -12,7 +13,12 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <div class="label">Adventure</div>
+                                @php
+                                    foreach ($datalist_category as $rs)
+                                                  if( $rs->id == $datalist_slider[0]->category_id) $cname=$rs->title;
+                                           // echo " cat_id=".$rs->id . " cat name= ".$rs->title      .   " <br>";
+                                @endphp
+                                <div class="label">  {{$cname}}  </div>
                                 <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[0]->id])}}" ><h2>{{$datalist_slider[0]->title}}</h2></a>
 
                                 <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
@@ -25,7 +31,12 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <div class="label">Adventure</div>
+                                @php
+                                    foreach ($datalist_category as $rs)
+                                                  if( $rs->id == $datalist_slider[1]->category_id) $cname=$rs->title;
+                                           // echo " cat_id=".$rs->id . " cat name= ".$rs->title      .   " <br>";
+                                @endphp
+                                <div class="label">{{$cname}}</div>
                                 <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[1]->id])}}" ><h2>{{$datalist_slider[1]->title}}</h2></a>
 
                                 <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
@@ -38,7 +49,12 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="hero__text">
-                                <div class="label">Adventure</div>
+                                @php
+                                    foreach ($datalist_category as $rs)
+                                                  if( $rs->id == $datalist_slider[2]->category_id) $cname=$rs->title;
+                                           // echo " cat_id=".$rs->id . " cat name= ".$rs->title      .   " <br>";
+                                @endphp
+                                <div class="label">{{$cname}}</div>
                                 <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[2]->id])}}" ><h2>{{$datalist_slider[2]->title}}</h2></a>
 
                                 <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>

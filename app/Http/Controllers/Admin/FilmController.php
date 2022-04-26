@@ -127,14 +127,16 @@ class FilmController extends Controller
         $data->title = $request->input('title');
         $data->keywords = $request->input('keywords');
         $data->description = $request->input('description');
-
-        $data-> image=  Storage::putFile('images', $request->file('image'));
-    //    $data-> image_slider=  Storage::putFile('images_slider', $request->file('image_slider'));
-
+        if ($request->file('image')!=null) {
+         $data->image = Storage::putFile('images', $request->file('image'));
+        }
+        if ($request->file('image_slider')!=null) {
+            $data->image_slider = Storage::putFile('images_slider', $request->file('image_slider'));
+        }
         $data->category_id = $request->input('category_id');
         $data->detail = $request->input('detail');
 
-   //     $data-> videolink=  Storage::putFile('videos', $request->file('videolink'));
+        $data-> videolink=  Storage::putFile('videos', $request->file('videolink'));
 
         $data->status = $request->input('status');
         $data->save();

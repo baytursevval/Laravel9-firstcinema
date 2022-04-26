@@ -10,7 +10,7 @@ class HomeController extends Controller
 {
     //
     public function home(){
-
+        $datalist_category=DB::table('categories')->get();
          $datalist_slider=DB::table('Films')-> where('image_slider','>','')->orderBy('image_slider','desc')->limit(3)->get();
      //   foreach ($datalist_slider as $rs)             echo $rs->title. "<br>";
 
@@ -19,7 +19,10 @@ class HomeController extends Controller
         $datalist_populer = DB::table('Films')->limit(4)->get();
         return view('home.index',['datalist_slider'=>$datalist_slider,
             'datalist_son'=>$datalist_son,
-            'datalist_populer'=>$datalist_populer]);
+            'datalist_populer'=>$datalist_populer,
+            'datalist_category'=>$datalist_category
+
+        ]);
 
 
     }

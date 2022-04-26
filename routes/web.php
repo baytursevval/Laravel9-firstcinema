@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FilmController;
+use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -41,13 +42,13 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::get('/film/delete/{filmid}', [FilmController::class, 'destroy'])->name('admin_film_delete');
     Route::get('/film/edit/{filmid}', [FilmController::class, 'edit'])->name('admin_film_edit');
 
-    //image********************
+    //film image gallery********************
     Route::prefix('image')->group(function (){
 
-    Route::get('create', [ImageController::class, 'create'])->name('admin_image_add');
-    Route::post('store', [ImageController::class, 'store'])->name('admin_image_update');
-    Route::post('delete/{id}', [ImageController::class, 'destroy'])->name('admin_image_store');
-    Route::get('show', [ImageController::class, 'show'])->name('admin_image_delete');
+    Route::get('create/{film_id}', [ImageController::class, 'create'])->name('admin_image_add');
+    Route::post('store/{film_id}', [ImageController::class, 'store'])->name('admin_image_store');
+    Route::get('delete/{film_id}/{id}', [ImageController::class, 'destroy'])->name('admin_image_delete');
+    Route::get('show', [ImageController::class, 'show'])->name('admin_image_show');
 
 });
 
