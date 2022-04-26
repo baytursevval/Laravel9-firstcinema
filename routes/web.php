@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FilmController;
 use App\Http\Controllers\Admin\ImageController;
+use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -49,9 +50,10 @@ Route::middleware('auth')->prefix('admin')->group(function () {
     Route::post('store/{film_id}', [ImageController::class, 'store'])->name('admin_image_store');
     Route::get('delete/{film_id}/{id}', [ImageController::class, 'destroy'])->name('admin_image_delete');
     Route::get('show', [ImageController::class, 'show'])->name('admin_image_show');
-
 });
-
+    //setting********************
+    Route::get('setting', [SettingController::class,'index'])->name('admin_setting');
+    Route::post('setting/update', [SettingController::class,'update'])->name('admin_setting_update');
 
 });
 Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
