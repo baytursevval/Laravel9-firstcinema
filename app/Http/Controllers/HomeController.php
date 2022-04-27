@@ -72,6 +72,7 @@ class HomeController extends Controller
 
     public function filmdetay($filmid){
 
+$data_comment=DB::table('comments')->get();
         $datalist= DB:: table('films')->where('id', $filmid)->get();
         $data=$datalist[0];
 
@@ -83,7 +84,10 @@ class HomeController extends Controller
         //$rs=$datalist[0];
         $filmid=['filmid'=>$filmid];
 
-        return view('home.filmdetay',['data'=>$data,'filmid'=>$filmid,'data_category'=>$data_category]);
+        return view('home.filmdetay',['data'=>$data,
+            'filmid'=>$filmid,
+            'data_category'=>$data_category,
+            'data_comment'=>$data_comment]);
     }
 
 
