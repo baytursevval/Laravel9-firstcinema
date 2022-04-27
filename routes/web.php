@@ -7,6 +7,7 @@ use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CommentController;
+use App\Http\Controllers\Admin\PoıntController;
 
 
 
@@ -58,7 +59,8 @@ Route::middleware('auth')->prefix('admin')->group(function () {
 
 });
 Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
-Route::get('comment/add/{film_id}', [CommentController::class, 'create'])->name('comment_add');
+Route::post('comment/add/{film_id}', [CommentController::class, 'create'])->name('comment_add');
+Route::post('point/add/{film_id}', [PoıntController::class, 'create'])->name('point_add');
 
 
 

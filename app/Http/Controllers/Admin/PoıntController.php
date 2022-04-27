@@ -3,13 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\Comment;
 use App\Models\Film;
+use App\Models\Point;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Storage;
 
-class CommentController extends Controller
+class PoıntController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -26,19 +25,12 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $film_id )
+    public function create(Request $request, $film_id)
     {
-
-        //$user_id=
-
-        //echo "film id= $film_id  <br>";
-        //echo "id= $  <br>";
-
-        $data=new Comment;
+        $data=new Point;
         $data->user_id = Auth::user()->id;
-        $data->comment = $request->input('comment');
         $data->film_id = $film_id;
-
+        $data->point = $request->input('point');
         $data->save();
         return redirect()->route('filmdetay',['filmid'=>$film_id]);
     }
@@ -57,10 +49,10 @@ class CommentController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\Point  $point
      * @return \Illuminate\Http\Response
      */
-    public function show(Comment $comment)
+    public function show(Point $point)
     {
         //
     }
@@ -68,10 +60,10 @@ class CommentController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\Point  $point
      * @return \Illuminate\Http\Response
      */
-    public function edit(Comment $comment)
+    public function edit(Point $point)
     {
         //
     }
@@ -80,10 +72,10 @@ class CommentController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\Point  $point
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Point $point)
     {
         //
     }
@@ -91,10 +83,10 @@ class CommentController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comment  $comment
+     * @param  \App\Models\Point  $point
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comment $comment)
+    public function destroy(Point $point)
     {
         //
     }

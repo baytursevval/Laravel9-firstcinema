@@ -11,19 +11,13 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-                        <?php
 
+                        <?php
                         //"$rs=$data[0];
                       //  echo $data->title;
-
-
 foreach ($data_category as $rs)
             if ($rs->id == $data->category_id)
                 $cname=$rs->title;
-
-
-
-
                         ?>
                         <a href="{{route('home')}}"><i class="fa fa-home"></i> Ana Sayfa</a>
                         <a href="#">Kategoriler</a>
@@ -51,16 +45,22 @@ foreach ($data_category as $rs)
                             <div class="anime__details__title">
                                 <h3>  {{$data->title}}    </h3>
 
-
                                 <span>{{$data->description}}</span>
                             </div>
                             <div class="anime__details__rating">
                                 <div class="rating">
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star"></i></a>
-                                    <a href="#"><i class="fa fa-star-half-o"></i></a>
+                            @if($can_point=='True')
+                                        {
+                                    <form method="POST" action="{{route('point_add',['film_id'=>$data->id])}}">
+                                        @csrf
+                                        Puan Ver <br>
+                                        <input type="number" value="0" min="0" max="10" name="point" ></input>
+                                        <button type="submit"> Puan Ver</button>
+                                    </form>
+                                        }
+                                @else
+                                    Zaten puan verildi
+                                @endif
                                 </div>
                                 <span>1.029 Votes</span>
                             </div>
@@ -104,10 +104,6 @@ foreach ($data_category as $rs)
                         </div>
 
                      @foreach($data_comment as $rs)
-                            @php
-                            //$comment=$data_comment[0];
-                            @endphp
-
                         <div class="anime__review__item">
                             <div class="anime__review__item__pic">
                                 <img src="img/anime/review-3.jpg" alt="">
@@ -117,17 +113,15 @@ foreach ($data_category as $rs)
                                 <p> {{ $rs->comment  }}  </p>
                             </div>
                         </div>
-
                         @endforeach
-
-
 
                     @auth()
                     <div class="anime__details__form">
                         <div class="section-title">
                             <h5>Yorum Ekle</h5>
                         </div>
-                        <form action="{{route('comment_add', ['film_id'=>$data->id])}}">
+                        <form method="post" action="{{route('comment_add', ['film_id'=>$data->id])}}">
+                            @csrf
                             <textarea name="comment" placeholder="Your Comment"></textarea>
                             <button type="submit"><i class="fa fa-location-arrow"></i> Gönder</button>
                         </form>

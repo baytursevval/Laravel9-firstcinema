@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Point;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use function PHPUnit\Framework\isEmpty;
+
 
 class HomeController extends Controller
 {
@@ -71,11 +74,17 @@ class HomeController extends Controller
     }
 
     public function filmdetay($filmid){
+        $can_point="False";
 
-$data_comment=DB::table('comments')->get();
+        $user_id=Auth::user()->id;
+
+        $datalist_point= Point::where('user_id', $user_id)->get()->first() ;
+        if ($datalist_point===null)
+            echo $can_point="True";
+
+        $datalist_comment=DB::table('comments')->get();
         $datalist= DB:: table('films')->where('id', $filmid)->get();
         $data=$datalist[0];
-
 
         $data_category=DB::table('categories')->get();
 
@@ -87,7 +96,8 @@ $data_comment=DB::table('comments')->get();
         return view('home.filmdetay',['data'=>$data,
             'filmid'=>$filmid,
             'data_category'=>$data_category,
-            'data_comment'=>$data_comment]);
+            'data_comment'=>$datalist_comment,
+            'can_point'=>$can_point]);
     }
 
 
