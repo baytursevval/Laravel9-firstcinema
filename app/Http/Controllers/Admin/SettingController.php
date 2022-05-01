@@ -30,11 +30,11 @@ class SettingController extends Controller
         return view('admin.setting_edit', ['data'=>$data]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public static function getSettings()
+    {
+        return Setting::all()->first();
+    }
+
     public function create()
     {
         //

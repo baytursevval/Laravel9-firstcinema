@@ -99,7 +99,7 @@
                 </a>
             </li>
             <li class="nav-item menu-items">
-                <a href="{{route('admin_setting')}}" class="nav-link" data-toggle="collapse" aria-expanded="false" aria-controls="auth">
+                <a  class="nav-link" href="{{route('admin_setting')}}"aria-expanded="false" aria-controls="auth">
               <span class="menu-icon">
                 <i class="mdi mdi-security"></i>
               </span>

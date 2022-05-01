@@ -7,6 +7,7 @@ use App\Models\Comment;
 use App\Models\Film;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class CommentController extends Controller
@@ -54,26 +55,32 @@ class CommentController extends Controller
         //
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
+    public function mycomments()
+    {
+        $user_id=Auth::user()->id;
+        $datalist_comments=Comment::where('user_id', $user_id)->get();
+        return view ('home.user_comments',['datalist_comments'=>$datalist_comments]);
+        }
+
+    public function delete($id)
+    {
+        DB::table('comments')->where('id', '=', $id)->delete();
+        return redirect()->route('mycomments');
+    }
+
+
     public function show(Comment $comment)
     {
         //
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Comment  $comment
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Comment $comment)
+
+    public function edit(Comment $comment, $id)
     {
         //
+        $data = DB::table('comments')->find($id);
+
+        return view('home.comment_edit', ['data'=>$data,'id'=>$id]);
     }
 
     /**
@@ -83,9 +90,15 @@ class CommentController extends Controller
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Comment $comment)
+    public function update(Request $request, Comment $comment, $id)
     {
-        //
+        $data=Comment::find($id);
+        $data->comment = $request->input('comment');
+
+        $data->save();
+
+        return redirect()->route('mycomments');
+
     }
 
     /**

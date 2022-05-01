@@ -1,6 +1,10 @@
 @extends('layouts.home')
 
-@section('title', 'dinamik home page')
+@section('title', $setting->title)
+@section('desc')
+    {{$setting->description}}
+@endsection
+@section('keywords', $setting->keywords)
 
 @section('slider')
     <!-- Hero Section Begin -->

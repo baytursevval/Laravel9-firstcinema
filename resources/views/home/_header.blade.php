@@ -21,7 +21,7 @@
                             <li class="active"><a href="{{route('home')}}">Anasayfa</a></li>
                             <li><a href="{{route('admin_category')}}">Kategoriler <span class="arrow_carrot-down"></span></a>
                                 <?php
-                                 $datalist = DB::table('categories')->get();
+                                use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
                                  ?>
                                 <ul class="dropdown">
                                     @foreach ($datalist as $item)
@@ -31,15 +31,31 @@
 
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="#">Blog</a></li>
                             <li><a href="#">İletişim</a></li>
+                            @auth
+                                <?php
+                            $username=Auth::user()->name;
+                                 ?>
+                            <li><a href="#">{{$username}} <span class="arrow_carrot-down"></span></a>
+
+                                <ul class="dropdown">
+
+                                        <li><a href="{{route('myprofile')}}">My Profile </a></li>
+                                    <li><a href="#">My Profile </a></li>
+                                    <li><a href="#">My Profile </a></li>
+
+                                </ul>
+                            </li>
+                            @endauth
                         </ul>
                     </nav>
                 </div>
             </div>
             <div class="col-lg-2">
                 <div class="header__right">
-                    <a href="#" class="search-switch"> <span class="icon_search"></span></a>
+                <!--    <input name="search" type="text" placeholder="ara" width="10 px"> -->
+                    <a href="#0000" class="search-switch"> <span class="icon_search"></span></a>
                     @guest
                     <a href="{{route('admin_login')}}"><span class="icon_profile"></span> Giriş Yap</a>
                     @endguest
