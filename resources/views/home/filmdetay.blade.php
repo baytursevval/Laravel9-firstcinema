@@ -48,6 +48,7 @@ foreach ($data_category as $rs)
                             </div>
                             <div class="anime__details__rating">
                                 <div class="rating">
+                                    @auth
                             @if($can_point=='True')
                                         {
                                     <form method="POST" action="{{route('point_add',['film_id'=>$data_film->id])}}">
@@ -60,7 +61,12 @@ foreach ($data_category as $rs)
                                 @else
                                     Zaten puan verildi
                                 @endif
+                                    @endauth
+                                    @guest
+                                        guest point
+                                        @endguest
                                 </div>
+
                                 <span>1.029 Votes</span>
                             </div>
                             <p>{{$data_film->detail}}</p>
@@ -77,7 +83,7 @@ foreach ($data_category as $rs)
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Scores:</span> 7.31 / 1,515</li>
+                                            <li><span>Scores:</span>{{$data_film->point}}  / {{$data_film->point_count}}</li>
                                             <li><span>Rating:</span> 8.5 / 161 times</li>
                                             <li><span>Duration:</span> 24 min/ep</li>
                                             <li><span>Quality:</span> HD</li>

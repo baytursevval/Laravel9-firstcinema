@@ -90,10 +90,12 @@ class HomeController extends Controller
 
     public function filmdetay($filmid){
         $can_point="False";
-
+if (isset(Auth::user()->id))
         $user_id=Auth::user()->id;
+else
+    $user_id=0;
 
-        $datalist_point= Point::where('user_id', $user_id)->get()->first() ;
+        $datalist_point= Point::where('user_id', $user_id)->where('film_id',$filmid)->get()->first() ;
         if ($datalist_point===null)
             echo $can_point="True";
 

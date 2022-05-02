@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id()->autoIncrement();
             $table->integer('user_id')->nullable();
             $table->integer('film_id')->nullable();
-            $table->integer('point')->default('0');
+            $table->float('point')->default('0');
             $table->timestamps();
         });
     }

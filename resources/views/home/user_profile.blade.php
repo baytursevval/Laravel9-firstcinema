@@ -35,7 +35,10 @@
                                                     <img src="{{asset('')}}storage/{{$data_user->image}}" style="width:100px; height:100px">
                                                 @endif</td>
                                         </tr>
-                                        <br>
+                                        <tr>
+                                            <th>  <label >Select a New Photo </label></th>
+                                            <td><input type="file" class="form-control" name="image" ></td>
+                                        </tr>
                                         <tr>
                                             <th> <label for="">User Name</label></th>
                                          <td><input type="text" name="name" id="name1" value="{{$data_user->name}}" placeholder="Name"></td>
@@ -47,10 +50,7 @@
                                             <input type="text" name="email" value="{{$data_user->email}}"placeholder="Email"></td>
                                         </tr>
 
-                                        <tr>
-                                            <th>  <label >Image </label></th>
-                                            <td><input type="file" class="form-control" name="image" ></td>
-                                        </tr>
+
 
 
                                     <div class="form-group">

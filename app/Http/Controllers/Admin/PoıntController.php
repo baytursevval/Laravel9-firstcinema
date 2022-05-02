@@ -25,13 +25,25 @@ class PoıntController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $film_id)
+    public function addpoint(Request $request, $film_id)
     {
         $data=new Point;
         $data->user_id = Auth::user()->id;
         $data->film_id = $film_id;
         $data->point = $request->input('point');
         $data->save();
+
+        $datalist_points= Point::where('film_id', $film_id)->get();
+        $count=Point::where('film_id', $film_id)->count();
+        $toplam=0;
+        foreach ($datalist_points as $rs)
+            $toplam=$toplam + $rs->point;
+            $avg=$toplam / $count;
+
+        $data_film=Film::find($film_id);
+        $data_film->point= (float)$avg;
+        $data_film->point_count= $count;
+        $data_film->save();
         return redirect()->route('filmdetay',['filmid'=>$film_id]);
     }
 

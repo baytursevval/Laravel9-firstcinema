@@ -22,7 +22,7 @@ Route::get('/filmkategori/{category_id}', [HomeController::class, 'filmkategori'
 
     //Admin********************
     Route::get('/admin', [\App\Http\Controllers\Admin\HomeController::class,'index'])->middleware('auth')->name('adminhome');
- //   Route::get('admin/login1', [HomeController::class,'login'])->name('admin_login');
+    Route::get('admin/login', [HomeController::class,'login'])->name('admin_login');
     Route::post('/admin/logincheck', [HomeController::class,'logincheck'])->name('admin_logincheck');
     Route::get('admin/logout', [HomeController::class,'logout'])->name('admin_logout');
     //Route::get('logout', [HomeController::class,'logout'])->name('logout');
@@ -58,7 +58,7 @@ Route::get('/filmkategori/{category_id}', [HomeController::class, 'filmkategori'
 });
     Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
     Route::post('comment/add/{film_id}', [CommentController::class, 'create'])->name('comment_add');
-    Route::post('point/add/{film_id}', [PoıntController::class, 'create'])->name('point_add');
+    Route::post('point/add/{film_id}', [PoıntController::class, 'addpoint'])->name('point_add');
 
     #user***************
     Route::middleware('auth')->prefix('user')->namespace('user')->group(function () {

@@ -28,7 +28,7 @@ return new class extends Migration
             $table->string('userid')->nullable();
             $table->string('status')->default('False');
             $table->integer('point')->default(0);
-
+            $table->integer('point_count')->default(0);
             $table->timestamps();
         });
     }
