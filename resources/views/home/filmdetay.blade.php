@@ -14,6 +14,7 @@
                         <?php
                         //"$rs=$data[0];
                       //  echo $data->title;
+                        use App\Models\User;
                         foreach ($data_category as $rs)
                         if ($rs->id == $data_film->category_id)
                         $cname=$rs->title;
@@ -50,16 +51,16 @@
                                 <div class="rating">
                                     @auth
                             @if($can_point=='True')
-                                        {
+
                                     <form method="POST" action="{{route('point_add',['film_id'=>$data_film->id])}}">
                                         @csrf
-                                        Puan Ver <br>
+
                                         <input type="number" value="0" min="0" max="10" name="point" ></input>
                                         <button type="submit"> Puan Ver</button>
                                     </form>
                                         }
                                 @else
-                                    Zaten puan verildi
+                                   <h6 style="color: wheat">Puan verildi</h6>
                                 @endif
                                     @endauth
                                     @guest
@@ -119,13 +120,15 @@
                      @foreach($datalist_comment as $rs)
                         <div class="anime__review__item">
                             <div class="anime__review__item__pic">
-                                <img src="img/anime/review-3.jpg" alt="">
+                                <img src="{{asset('')}}storage/{{$rs->user->image}}" alt="">
                             </div>
                             <div class="anime__review__item__text">
-                                @if($rs->user_id == $data_user->id)
-                                <h6>{{$data_user->name}} <span>{{$rs->created_at}}</span></h6>
+
+
+                                <h6 style="color:wheat"> {{$rs->user->name}}</h6>
                                 <p> {{ $rs->comment  }}  </p>
-                                @endif
+                                <h6> {{$rs->created_at}} </h6>
+
                             </div>
                         </div>
                         @endforeach

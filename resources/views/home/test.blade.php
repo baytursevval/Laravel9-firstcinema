@@ -7,16 +7,14 @@
 <body>
 
 <?php
-    $filmdata=new \App\Models\Film;
-$filmdata->title="asdf";
-$filmdata->image_slider="slf";
-$filmdata->save();
+
+$data=\App\Models\Film::where('id','=', 59)->get();
+echo $data[0]->category->title;
 
 
-//foreach ($data_category as $rs)
-//    echo $rs->title;
+// foreach ($data as $rs)    echo $rs->comment ."<br>";
 
-$film_category=4;
+//$film_category=4;
 ?>
 
 

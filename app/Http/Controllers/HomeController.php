@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Film;
 use App\Models\Like;
 use App\Models\Point;
@@ -20,12 +21,12 @@ class HomeController extends Controller
 
         $setting= Setting::first();
 
-         $datalist_category=DB::table('categories')->get();
-         $datalist_slider=DB::table('Films')-> where('image_slider','>','')->orderBy('image_slider','desc')->limit(3)->get();
+         $datalist_category=Category::get();
+         $datalist_slider=Film::where('image_slider','!=',null)->where('image_slider','>','')->orderBy('image_slider','desc')->limit(3)->get();
      //   foreach ($datalist_slider as $rs)             echo $rs->title. "<br>";
 
-        $datalist_son = DB::table('Films')->limit(8)->orderBy('id','desc')->get();
-        $datalist_populer = DB::table('Films')->limit(4)->get();
+        $datalist_son =Film::limit(8)->orderBy('id','desc')->get();
+        $datalist_populer =Film::limit(4)->get();
         return view('home.index',['datalist_slider'=>$datalist_slider,
             'datalist_son'=>$datalist_son,
             'datalist_populer'=>$datalist_populer,
@@ -77,6 +78,23 @@ class HomeController extends Controller
         return view('admin.about');
     }
 
+    public function filmdetay2($film_id){
+//comment controller admin içinde
+//bütün yorum yapanların ismi sevval
+//
+        $data_film=DB::table('films')->where('id', $film_id)->get()->first();
+        //$data_category=DB::table('categories')->get();
+        $data_category=Category::all();
+
+        $datalist_comment=DB::table('comments')->get();
+        $data_user=DB::table('users')->where('id',$data_film->user_id)->get()->first();
+
+        return view('home.filmdetay2',['film_id'=>$film_id,
+            'data_film'=>$data_film,
+            'data_category'=>$data_category,
+            'datalist_comment'=>$datalist_comment,
+            'data_user'=>$data_user]);
+    }
 
 
     public function logincheck(Request $request)
@@ -127,14 +145,14 @@ class HomeController extends Controller
            else if($datalist_like->like=="False")
                     $can_like="True";
 
-        $datalist_comment=DB::table('comments')->get();
+        $datalist_comment=Comment::where('film_id', $film_id)->get();
         $data_film= DB:: table('films')->where('id', $film_id)->get()->first();
 
-        $data_user=DB::table('users')->where('id',$data_film->user_id)->get()->first();
+       // $data_user=DB::table('users')->where('id',$data_film->user_id)->get()->first();
 
         //  echo $data_film->title; exit();
 
-        $data_category=DB::table('categories')->get();
+        $data_category=Category::get();
 
         //$rs=$datalist[0];
         $film_id=['film_id'=>$film_id];
@@ -145,8 +163,7 @@ class HomeController extends Controller
             'data_category'=>$data_category,
             'datalist_comment'=>$datalist_comment,
             'can_point'=>$can_point,
-            'can_like'=>$can_like,
-            'data_user'=>$data_user]);
+            'can_like'=>$can_like]);
     }
 
 
@@ -185,8 +202,9 @@ class HomeController extends Controller
     public function test(){
 
         //$ad='ali';
-        $data=['ad'=>'ali', 'soyad'=>'veli' ];
-        $data2=['name'=>'jack', 'lname'=>'vel' ];
+       // $data=['ad'=>'ali', 'soyad'=>'veli' ];
+        //$data2=['name'=>'jack', 'lname'=>'vel' ];
+
         return view('home.test');
     }
 

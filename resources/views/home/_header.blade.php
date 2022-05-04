@@ -1,3 +1,6 @@
+<?php
+use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
+?>
 <!-- Page Preloder -->
 <div id="preloder">
     <div class="loader"></div>
@@ -20,9 +23,7 @@
                         <ul>
                             <li class="active"><a href="{{route('home')}}">Anasayfa</a></li>
                             <li><a href="{{route('admin_category')}}">Kategoriler <span class="arrow_carrot-down"></span></a>
-                                <?php
-                                use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
-                                 ?>
+
                                 <ul class="dropdown">
                                     @foreach ($datalist as $item)
 

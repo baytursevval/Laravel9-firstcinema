@@ -29,7 +29,7 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
     Route::post('/admin/logincheck', [HomeController::class,'logincheck'])->name('admin_logincheck');
     Route::get('admin/logout', [HomeController::class,'logout'])->name('admin_logout');
     //Route::get('logout', [HomeController::class,'logout'])->name('logout');
-    
+    Route::get('filmdetay2/{film_id}', [HomeController::class,'filmdetay2'])->name('filmdetay2');
 
 
     Route::middleware('auth')->prefix('admin')->group(function () {
