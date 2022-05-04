@@ -10,17 +10,15 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="breadcrumb__links">
-
                         <?php
-                        //"$rs=$data[0];
-                      //  echo $data->title;
                         foreach ($data_category as $rs)
-                        if ($rs->id == $data_film->category_id)
-                        $cname=$rs->title;
+                            if ($rs->id == $data_film->category_id)
+                                $cn=$rs->title;
                         ?>
-                        <a href="{{route('home')}}"><i class="fa fa-home"></i> Ana Sayfa</a>
+                        <a href="#"><i class="fa fa-home"></i> Ana Sayfa</a>
                         <a href="#">Kategoriler</a>
-                        <span><a href="{{route('filmkategori',['category_id'=>$data_film->category_id])}}"  >  {{$cname}} Filmleri </a>   </span>
+                        <span><a href="#">{{$cn}} Filmleri</a>   </span>
+
                     </div>
                 </div>
             </div>
@@ -42,29 +40,13 @@
                     <div class="col-lg-9">
                         <div class="anime__details__text">
                             <div class="anime__details__title">
-                                <h3>  {{$data_film->title}}    </h3>
+                                <h3> {{$data_film->title}}   </h3>
 
                                 <span>{{$data_film->description}}</span>
                             </div>
                             <div class="anime__details__rating">
                                 <div class="rating">
-                                    @auth
-                            @if($can_point=='True')
-                                        {
-                                    <form method="POST" action="{{route('point_add',['film_id'=>$data_film->id])}}">
-                                        @csrf
-                                        Puan Ver <br>
-                                        <input type="number" value="0" min="0" max="10" name="point" ></input>
-                                        <button type="submit"> Puan Ver</button>
-                                    </form>
-                                        }
-                                @else
-                                    Zaten puan verildi
-                                @endif
-                                    @endauth
-                                    @guest
-                                        guest point
-                                        @endguest
+                                4444
                                 </div>
 
                                 <span>1.029 Votes</span>
@@ -83,9 +65,9 @@
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Scores:</span>{{$data_film->point}}  / {{$data_film->point_count}}</li>
+                                            <li><span>Scores:</span>  / 0</li>
                                             <li><span>Rating:</span> 8.5 / 161 times</li>
-                                            <li><span>Can like:</span> {{$can_like}}</li>
+                                            <li><span>Can like:</span> 01</li>
                                             <li><span>Quality:</span> HD</li>
                                             <li><span>Views:</span> 131,541</li>
                                         </ul>
@@ -93,14 +75,7 @@
                                 </div>
                             </div>
                             <div class="anime__details__btn">
-                                @auth
-                                @if($can_like=="True")
-                                <a href="{{route('likefilm',['film_id'=>$data_film->id])}}" class="follow-btn"><i class="fa fa-heart-o"></i> Like</a>
-                                @else
-                                        <a href="{{route('unlikefilm',['film_id'=>$data_film->id])}}" class="follow-btn"><i class="fa fa-heart-o"></i>UnLike</a>
-                                    @endif
 
-                                    @endauth
 
                                 <a href="#" class="watch-btn"><span>Watch Now</span> <i
                                         class="fa fa-angle-right"></i></a>
@@ -115,31 +90,31 @@
                         <div class="section-title">
                             <h5>Film Reviews</h5>
                         </div>
+                    @foreach($datalist_comment as $rs)
 
-                     @foreach($datalist_comment as $rs)
                         <div class="anime__review__item">
                             <div class="anime__review__item__pic">
                                 <img src="img/anime/review-3.jpg" alt="">
                             </div>
                             <div class="anime__review__item__text">
-                                @if($rs->user_id == $data_user->id)
-                                <h6>{{$data_user->name}} <span>{{$rs->created_at}}</span></h6>
-                                <p> {{ $rs->comment  }}  </p>
-                                @endif
+
+                                <h6> {{$data_user->name}} - <span>kkk</span></h6>
+
+                                    <p> {{$rs->comment}}  </p>
+
                             </div>
                         </div>
                         @endforeach
-
                     @auth()
                     <div class="anime__details__form">
                         <div class="section-title">
                             <h5>Yorum Ekle</h5>
                         </div>
-                        <form method="post" action="{{route('comment_add', ['film_id'=>$data_film->id])}}">
+                       <!-- <form method="post" action="{{route('comment_add', ['film_id'=>$data_film->id])}}">
                             @csrf
                             <textarea name="comment" placeholder="Your Comment"></textarea>
                             <button type="submit"><i class="fa fa-location-arrow"></i> Gönder</button>
-                        </form>
+                        </form>-->
                     </div>
                     @endauth
 

@@ -23,7 +23,7 @@
                                            // echo " cat_id=".$rs->id . " cat name= ".$rs->title      .   " <br>";
                                 @endphp
                                 <div class="label">  {{$cname}}  </div>
-                                <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[0]->id])}}" ><h2>{{$datalist_slider[0]->title}}</h2></a>
+                                <a href="{{route('filmdetay', ['film_id'=>$datalist_slider[0]->id])}}" ><h2>{{$datalist_slider[0]->title}}</h2></a>
 
                                 <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>
@@ -41,7 +41,7 @@
                                            // echo " cat_id=".$rs->id . " cat name= ".$rs->title      .   " <br>";
                                 @endphp
                                 <div class="label">{{$cname}}</div>
-                                <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[1]->id])}}" ><h2>{{$datalist_slider[1]->title}}</h2></a>
+                                <a href="{{route('filmdetay', ['film_id'=>$datalist_slider[1]->id])}}" ><h2>{{$datalist_slider[1]->title}}</h2></a>
 
                                 <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>
@@ -59,7 +59,7 @@
                                            // echo " cat_id=".$rs->id . " cat name= ".$rs->title      .   " <br>";
                                 @endphp
                                 <div class="label">{{$cname}}</div>
-                                <a href="{{route('filmdetay', ['filmid'=>$datalist_slider[2]->id])}}" ><h2>{{$datalist_slider[2]->title}}</h2></a>
+                                <a href="{{route('filmdetay', ['film_id'=>$datalist_slider[2]->id])}}" ><h2>{{$datalist_slider[2]->title}}</h2></a>
 
                                 <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>

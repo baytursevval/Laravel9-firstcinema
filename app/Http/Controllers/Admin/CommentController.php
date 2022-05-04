@@ -41,7 +41,7 @@ class CommentController extends Controller
         $data->film_id = $film_id;
 
         $data->save();
-        return redirect()->route('filmdetay',['filmid'=>$film_id]);
+        return redirect()->route('filmdetay',['film_id'=>$film_id]);
     }
 
     /**

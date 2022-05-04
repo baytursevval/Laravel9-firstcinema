@@ -20,12 +20,16 @@ Route::get('admin/login', [HomeController::class,'login'])->name('admin');
 
 Route::get('/filmkategori/{category_id}', [HomeController::class, 'filmkategori'])->name('filmkategori');
 
+Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearch');
+//Route::get('searchresult', [HomeController::class,'searchresult'])->name('searchresult');
+
     //Admin********************
     Route::get('/admin', [\App\Http\Controllers\Admin\HomeController::class,'index'])->middleware('auth')->name('adminhome');
     Route::get('admin/login', [HomeController::class,'login'])->name('admin_login');
     Route::post('/admin/logincheck', [HomeController::class,'logincheck'])->name('admin_logincheck');
     Route::get('admin/logout', [HomeController::class,'logout'])->name('admin_logout');
     //Route::get('logout', [HomeController::class,'logout'])->name('logout');
+    
 
 
     Route::middleware('auth')->prefix('admin')->group(function () {
@@ -56,11 +60,13 @@ Route::get('/filmkategori/{category_id}', [HomeController::class, 'filmkategori'
     Route::get('setting', [SettingController::class,'index'])->name('admin_setting');
     Route::post('setting/update', [SettingController::class,'update'])->name('admin_setting_update');
 });
-    Route::get('filmdetay/{filmid}', [HomeController::class, 'filmdetay'])->name('filmdetay');
+    Route::get('filmdetay/{film_id}', [HomeController::class, 'filmdetay'])->name('filmdetay');
     Route::post('comment/add/{film_id}', [CommentController::class, 'create'])->name('comment_add');
     Route::post('point/add/{film_id}', [PoıntController::class, 'addpoint'])->name('point_add');
+    Route::get('likefilm/{film_id}', [HomeController::class, 'likefilm'])->name('likefilm');
+    Route::get('unlikefilm/{film_id}', [HomeController::class, 'unlikefilm'])->name('unlikefilm');
 
-    #user***************
+#user***************
     Route::middleware('auth')->prefix('user')->namespace('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('myprofile');
     Route::post('/update', [UserController::class, 'update'])->name('myprofile_update');

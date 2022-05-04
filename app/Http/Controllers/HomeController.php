@@ -2,6 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Film;
+use App\Models\Like;
 use App\Models\Point;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -29,6 +32,21 @@ class HomeController extends Controller
             'datalist_category'=>$datalist_category,
             'setting'=>$setting
         ]);
+
+    }
+
+
+    public function filmsearch(Request $request){
+
+       $search= $request->input('search');
+
+       $datalist_search=Film::where('title', 'like', '%'.$search.'%')->get();
+
+       return view('home.filmsearch',['datalist_search'=>$datalist_search]);
+
+    }
+    public function searchresult(){
+
 
 
     }
@@ -70,6 +88,7 @@ class HomeController extends Controller
                 $request->session()->regenerate();
 
                 return redirect()->route('home');
+
             }
             return back()->withErrors([
                 'email'=>'The provided credentails do not match our records.',
@@ -78,6 +97,7 @@ class HomeController extends Controller
         else
         {
             return view('admin.login');
+            //return redirect()->back();
         }
     }
     public function logout(Request $request)
@@ -88,32 +108,78 @@ class HomeController extends Controller
         return redirect('/');
     }
 
-    public function filmdetay($filmid){
+    public function filmdetay($film_id){
         $can_point="False";
-if (isset(Auth::user()->id))
-        $user_id=Auth::user()->id;
-else
-    $user_id=0;
+        $can_like="False";
 
-        $datalist_point= Point::where('user_id', $user_id)->where('film_id',$filmid)->get()->first() ;
+        if (isset(Auth::user()->id))
+        $user_id=Auth::user()->id;
+        else
+        $user_id=0;
+
+        $datalist_point= Point::where('user_id', $user_id)->where('film_id',$film_id)->get()->first() ;
         if ($datalist_point===null)
-            echo $can_point="True";
+             $can_point="True";
+
+        $datalist_like=Like::where('user_id', $user_id)->where('film_id',$film_id)->get()->first();
+        if ($datalist_like===null)
+                 $can_like="True";
+           else if($datalist_like->like=="False")
+                    $can_like="True";
 
         $datalist_comment=DB::table('comments')->get();
-        $data_film= DB:: table('films')->where('id', $filmid)->get()->first();
+        $data_film= DB:: table('films')->where('id', $film_id)->get()->first();
 
-      //  echo $data_film->title; exit();
+        $data_user=DB::table('users')->where('id',$data_film->user_id)->get()->first();
+
+        //  echo $data_film->title; exit();
 
         $data_category=DB::table('categories')->get();
 
         //$rs=$datalist[0];
-        $filmid=['filmid'=>$filmid];
+        $film_id=['film_id'=>$film_id];
 
-        return view('home.filmdetay',['data_film'=>$data_film,
-            'filmid'=>$filmid,
+
+        return view('home.filmdetay',['film_id'=>$film_id,
+            'data_film'=>$data_film,
             'data_category'=>$data_category,
             'datalist_comment'=>$datalist_comment,
-            'can_point'=>$can_point]);
+            'can_point'=>$can_point,
+            'can_like'=>$can_like,
+            'data_user'=>$data_user]);
+    }
+
+
+    public function likefilm($film_id){
+            $user_id=Auth::user()->id;
+            $data_like= Like::where('user_id',$user_id)->where('film_id',$film_id)->get()->first();
+            if($data_like===null) {
+              // kayıt yoksa
+                $new_like= new Like;
+                $new_like->user_id=$user_id;
+                $new_like->film_id=$film_id;
+                $new_like->like="True";
+                $new_like->save();
+            }
+            else
+                if ($data_like->like=="False")
+                {
+                    $data_like->like="True";
+                    $data_like->save();
+                }
+        return redirect()->route('filmdetay',['film_id'=>$film_id]);
+
+    }
+    public function unlikefilm($film_id)
+    {
+        $user_id = Auth::user()->id;
+
+       $data=Like::where('user_id',$user_id)->where('film_id',$film_id)->get()->first();
+       $data->like="False";
+       $data->save();
+
+       return redirect()->route('filmdetay', ['film_id' => $film_id]);
+
     }
 
     public function test(){
@@ -129,5 +195,7 @@ public function filmkategori($categori_id){
     $datalist = DB::table('Films')->where('category_id', $categori_id)->limit('8')->get();
         return view('home.filmkategori', ['datalist'=>$datalist]);
 }
+
+
 
 }

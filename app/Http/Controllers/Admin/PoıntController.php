@@ -44,7 +44,7 @@ class PoıntController extends Controller
         $data_film->point= (float)$avg;
         $data_film->point_count= $count;
         $data_film->save();
-        return redirect()->route('filmdetay',['filmid'=>$film_id]);
+        return redirect()->route('filmdetay', ['film_id' => $film_id]);
     }
 
     /**
