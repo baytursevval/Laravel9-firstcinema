@@ -31,6 +31,7 @@
                     </div>
                 </div>
 
+
                 <div class="hero__items set-bg" data-setbg="{{asset('')}}storage/{{$datalist_slider[1]->image_slider}}">
                     <div class="row">
                         <div class="col-lg-6">
@@ -40,7 +41,7 @@
                                                   if( $rs->id == $datalist_slider[1]->category_id) $cname=$rs->title;
                                            // echo " cat_id=".$rs->id . " cat name= ".$rs->title      .   " <br>";
                                 @endphp
-                                <div class="label">  {{$datalist_slider[0]->category->title}} </div>
+                                <div class="label">  {{$datalist_slider[1]->category->title}} </div>
                                 <a href="{{route('filmdetay', ['film_id'=>$datalist_slider[1]->id])}}" ><h2>{{$datalist_slider[1]->title}}</h2></a>
 
                                 <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
@@ -54,7 +55,7 @@
                         <div class="col-lg-6">
                             <div class="hero__text">
 
-                                <div class="label"> {{$datalist_slider[0]->category->title}} </div>
+                                <div class="label"> {{$datalist_slider[2]->category->title}} </div>
                                 <a href="{{route('filmdetay', ['film_id'=>$datalist_slider[2]->id])}}" ><h2>{{$datalist_slider[2]->title}}</h2></a>
 
                                 <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
@@ -101,7 +102,7 @@
                                                 <div class="product__item__pic set-bg" data-setbg="{{asset('')}}storage/{{$rs->image}}">
                                                     <div class="ep">18 / 18</div>
                                                     <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                                    <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                                    <!--<div class="view"><i class="fa fa-eye"></i> 9141</div>-->
                                                 </div>
                                             </a>
 
@@ -111,7 +112,7 @@
                                                     <li>HD</li>
                                                     <li>Movie</li>
                                                 </ul>
-                                                <h5><a href="#">{{$rs->title}}</a></h5>
+                                                <h5><a href="{{route('filmdetay',['film_id'=>$rs->id])}}">{{$rs->title}}</a></h5>
                                             </div>
                                         </div>
                                     </div>

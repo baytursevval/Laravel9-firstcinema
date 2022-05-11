@@ -1,5 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
+
+
 ?>
 <!-- Page Preloder -->
 <div id="preloder">
@@ -17,7 +19,7 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
                     </a>
                 </div>
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-10">
                 <div class="header__nav">
                     <nav class="header__menu mobile-menu">
                         <ul>
@@ -39,29 +41,28 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
                             $username=Auth::user()->name;
                                  ?>
                             <li><a href="#">{{$username}} <span class="arrow_carrot-down"></span></a>
-
                                 <ul class="dropdown">
-
                                         <li><a href="{{route('myprofile')}}">My Profile </a></li>
                                     <li><a href="#">My Profile </a></li>
                                     <li><a href="#">My Profile </a></li>
-
                                 </ul>
                             </li>
                             @endauth
+                            <li><form action="{{route('filmsearch')}}" method="post">
+                                    @csrf
+                                    <input type="text" name="search" style="width: 150px" placeholder="ara...">
+                                    <button type="submit"><i class="fa fa-search"></i></button>
+                                </form></li>
                         </ul>
+
                     </nav>
+
                 </div>
+
             </div>
-            <div class="col-lg-4">
+            <div class="col-lg-1">
                 <div class="header__right">
                 <!--    <input name="search" type="text" placeholder="ara" width="10 px"> -->
-                    <form action="{{route('filmsearch')}}" method="post">
-                        @csrf
-                    <input type="text" name="search" style="width: 150px">
-                    <a href="" class="search-switch"> <span class="icon_search"></span></a>
-                        <input type="submit" value="submit"><i class="fa-solid fa-magnifying-glass"></i>
-                    </form>
                     @guest
                     <a href="{{route('admin_login')}}"><span class="icon_profile"></span>Giriş Yap</a>
                     @endguest

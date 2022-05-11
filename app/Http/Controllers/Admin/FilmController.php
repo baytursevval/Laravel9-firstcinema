@@ -105,7 +105,6 @@ class FilmController extends Controller
      */
     public function edit(Film $film,$filmid)
     {
-      //
         $data = DB::table('films')->find($filmid);
         $data_category= Category::all();
 

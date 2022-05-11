@@ -37,7 +37,7 @@
                     <div class="col-lg-3">
                         <div class="anime__details__pic set-bg" data-setbg="{{asset('')}}storage/{{$data_film->image}}" >
                             <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                            <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                          <!--  <div class="view"><i class="fa fa-eye"></i> 9141</div>-->
                         </div>
                     </div>
                     <div class="col-lg-9">
@@ -51,10 +51,8 @@
                                 <div class="rating">
                                     @auth
                             @if($can_point=='True')
-
                                     <form method="POST" action="{{route('point_add',['film_id'=>$data_film->id])}}">
                                         @csrf
-
                                         <input type="number" value="0" min="0" max="10" name="point" ></input>
                                         <button type="submit"> Puan Ver</button>
                                     </form>
@@ -68,7 +66,7 @@
                                         @endguest
                                 </div>
 
-                                <span>1.029 Votes</span>
+                                <span>Puanınız: {{$datalist_point->point}}</span>
                             </div>
                             <p>{{$data_film->detail}}</p>
                             <div class="anime__details__widget">

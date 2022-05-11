@@ -66,6 +66,12 @@ class HomeController extends Controller
         return view('home.about');
     }
 
+    /*
+     public static function getsetting(){
+        return Setting::first();
+    }
+    */
+
     public function login(){
         return view('admin.login');
     }
@@ -77,25 +83,6 @@ class HomeController extends Controller
     public function contact(){
         return view('admin.about');
     }
-
-    public function filmdetay2($film_id){
-//comment controller admin içinde
-//bütün yorum yapanların ismi sevval
-//
-        $data_film=DB::table('films')->where('id', $film_id)->get()->first();
-        //$data_category=DB::table('categories')->get();
-        $data_category=Category::all();
-
-        $datalist_comment=DB::table('comments')->get();
-        $data_user=DB::table('users')->where('id',$data_film->user_id)->get()->first();
-
-        return view('home.filmdetay2',['film_id'=>$film_id,
-            'data_film'=>$data_film,
-            'data_category'=>$data_category,
-            'datalist_comment'=>$datalist_comment,
-            'data_user'=>$data_user]);
-    }
-
 
     public function logincheck(Request $request)
     {
@@ -127,43 +114,45 @@ class HomeController extends Controller
     }
 
     public function filmdetay($film_id){
-        $can_point="False";
-        $can_like="False";
+
+        $data_film= DB:: table('films')->where('id', $film_id)->get()->first();
+        $data_category=Category::get();
+        //$rs=$datalist[0];
+
+        $datalist_comment=Comment::where('film_id', $film_id)->get();
+
+        // $data_user=DB::table('users')->where('id',$data_film->user_id)->get()->first();
+
+        // echo $data_film->title; exit();
 
         if (isset(Auth::user()->id))
-        $user_id=Auth::user()->id;
+            $user_id=Auth::user()->id;
         else
-        $user_id=0;
+            $user_id=0;
+
+        $can_point="False";
 
         $datalist_point= Point::where('user_id', $user_id)->where('film_id',$film_id)->get()->first() ;
         if ($datalist_point===null)
-             $can_point="True";
+            $can_point="True";
+
+        $can_like="False";
 
         $datalist_like=Like::where('user_id', $user_id)->where('film_id',$film_id)->get()->first();
         if ($datalist_like===null)
-                 $can_like="True";
-           else if($datalist_like->like=="False")
-                    $can_like="True";
+            $can_like="True";
+        else if($datalist_like->like=="False")
+            $can_like="True";
 
-        $datalist_comment=Comment::where('film_id', $film_id)->get();
-        $data_film= DB:: table('films')->where('id', $film_id)->get()->first();
-
-       // $data_user=DB::table('users')->where('id',$data_film->user_id)->get()->first();
-
-        //  echo $data_film->title; exit();
-
-        $data_category=Category::get();
-
-        //$rs=$datalist[0];
         $film_id=['film_id'=>$film_id];
-
 
         return view('home.filmdetay',['film_id'=>$film_id,
             'data_film'=>$data_film,
             'data_category'=>$data_category,
             'datalist_comment'=>$datalist_comment,
             'can_point'=>$can_point,
-            'can_like'=>$can_like]);
+            'can_like'=>$can_like,
+            'datalist_point'=>$datalist_point]);
     }
 
 

@@ -20,25 +20,15 @@
         </section>
 
         <section class="content">
-
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Add Film</h3>
-
+                    <h3 class="card-title">Film Ekle</h3>
                 </div>
                 <div class="card-body">
-
-
-
-
-
                     <div class="card">
                         <div class="card-body">
-
                             <form action="{{route('admin_film_store') }}" method="post" class="forms-sample" enctype="multipart/form-data">
                             @csrf
-
-
                                 <div class="form-group">
                                     <label >Title</label>
                                     <input type="text" class="form-control" name="title" >
@@ -89,9 +79,7 @@
                                         <option>False</option>
                                     </select>
                                 </div>
-
-                                <button type="submit" class="btn btn-primary mr-2">Add</button>
-
+                                <button type="submit" class="btn btn-primary mr-2">Oluştur</button>
                             </form>
 
                         </div>

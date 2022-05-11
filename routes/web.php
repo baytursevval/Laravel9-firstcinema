@@ -14,6 +14,7 @@ use App\Http\Controllers\Admin\PoıntController;
 Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('blog',[HomeController::class,'blog'])->name('blog');
 Route::get('contact',[HomeController::class,'contact'])->name('contact');
+Route::get('aboutus',[HomeController::class,'aboutus'])->name('aboutus');
 
 Route::get('/home',[HomeController::class,'home1'])->name('home1');
 Route::get('admin/login', [HomeController::class,'login'])->name('admin');
@@ -29,7 +30,7 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
     Route::post('/admin/logincheck', [HomeController::class,'logincheck'])->name('admin_logincheck');
     Route::get('admin/logout', [HomeController::class,'logout'])->name('admin_logout');
     //Route::get('logout', [HomeController::class,'logout'])->name('logout');
-    Route::get('filmdetay2/{film_id}', [HomeController::class,'filmdetay2'])->name('filmdetay2');
+   // Route::get('filmdetay2/{film_id}', [HomeController::class,'filmdetay2'])->name('filmdetay2');
 
 
     Route::middleware('auth')->prefix('admin')->group(function () {
@@ -41,7 +42,7 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
     Route::get('category/edit/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'edit'])->name('admin_category_edit');
     Route::post('category/update/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'update'])->name('admin_category_update');
     Route::get('category/delete/{id}', [\App\Http\Controllers\Admin\CategoryController::class, 'destroy'])->name('admin_category_delete');
-    Route::get('category/show', [\App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('admin_category_show');
+    //Route::get('category/show', [\App\Http\Controllers\Admin\CategoryController::class, 'show'])->name('admin_category_show');
    //film*********************
     Route::get('film', [\App\Http\Controllers\Admin\FilmController::class, 'index'])->name('admin_film');
     Route::get('/film/add', [FilmController::class, 'create'])->name('admin_film_add');

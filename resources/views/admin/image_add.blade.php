@@ -20,11 +20,6 @@
     <link rel="shortcut icon" href="{{asset('assets')}}/admin/assets/images/favicon.png" />
 </head>
 <body>
-
-
-
-
-
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Add Image</h3>

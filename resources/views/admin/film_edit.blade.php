@@ -37,8 +37,6 @@
                             <form action="{{route('admin_film_update',['filmid'=>$filmid])}}" method="post" class="forms-sample" enctype="multipart/form-data">
                             @csrf
 
-
-
                                 <label for="exampleSelectGender">Category </label>
                                 <select class="form-control" name="category_id" >
                                     @foreach($data_category as $rs)
@@ -83,7 +81,6 @@
                                     <input type="file" class="form-control" name="videolink" value="{{$data->videolink}}">
                                 </div>
 
-
                                 <div class="form-group">
                                     <label for="exampleSelectGender">Status</label>
                                     <select class="form-control" name="status">
@@ -93,8 +90,6 @@
                                         <option value="False">False</option>
                                     </select>
                                 </div>
-
-
 
                                 <button type="submit" class="btn btn-primary mr-2">Update</button>
 

@@ -1,4 +1,6 @@
-
+@php
+    $data_user=DB::table('users')->where('id',Auth::user()->id)->get()->first();
+@endphp
     <!-- partial:partials/_sidebar.html -->
     <nav class="sidebar sidebar-offcanvas" id="sidebar">
         <div class="sidebar-brand-wrapper d-none d-lg-flex align-items-center justify-content-center fixed-top">
@@ -10,12 +12,12 @@
                 <div class="profile-desc">
                     <div class="profile-pic">
                         <div class="count-indicator">
-                            <img class="img-xs rounded-circle " src="{{asset('assets')}}/admin/assets/images/faces/face15.jpg" alt="">
+                            <img class="img-xs rounded-circle " src="{{asset('')}}storage/{{$data_user->image}}" alt="">
                             <span class="count bg-success"></span>
                         </div>
                         <div class="profile-name">
                             <h5 class="mb-0 font-weight-normal"> @php echo Auth::user()->name @endphp </h5>
-                            <span>Gold Member</span>
+                            <span>Admin</span>
                         </div>
                     </div>
                     <a href="#" id="profile-dropdown" data-toggle="dropdown"><i class="mdi mdi-dots-vertical"></i></a>

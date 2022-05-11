@@ -1,5 +1,5 @@
 @php
-$setting= \App\Http\Controllers\Admin\SettingController::getSettings();
+$setting= \App\Http\Controllers\Admin\SettingController::getSettings()
 
 @endphp
 
@@ -13,15 +13,22 @@ $setting= \App\Http\Controllers\Admin\SettingController::getSettings();
             <div class="col-lg-3">
 
                 <div class="footer__logo">
-                    <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                   <!-- <a href="./index.html"><img src="img/logo.png" alt=""></a>-->
+
+                    <strong>Company: {{$setting->company}}</strong>
+                    <strong>Adres: {{$setting->adress}}</strong>
+                    <ul>
+                        @if ($setting->twitter != null ) <li><a href="{{$setting->twitter}}" target="_blank"><i class="mdi mdi-twitter" tar></i></a></li>
+                        @endif
+                    </ul>
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="footer__nav">
                     <ul>
-                        <li class="active"><a href="{{route('home')}}" >Homepage</a></li>
+                        <li ><a href="{{route('home')}}" >Homepage</a></li>
                         <li><a href="./categories.html" target="_blank">Categories</a></li>
-                        <li><a href="./blog.html" target="_blank">Our Blog</a></li>
+                        <li><a href="{{route('aboutus')}}" target="_blank">Our Blog</a></li>
                         <li><a href="#" target="_blank">Contacts</a></li>
                     </ul>
                 </div>
