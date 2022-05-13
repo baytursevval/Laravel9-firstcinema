@@ -48,6 +48,7 @@ class FilmController extends Controller
      */
     public function store(Request $request )
     {
+
         $data=new Film;
 
         $data->category_id=$request->input('category_id');
@@ -84,6 +85,7 @@ class FilmController extends Controller
 
 
         return redirect()->route('admin_film');
+
     }
 
     /**

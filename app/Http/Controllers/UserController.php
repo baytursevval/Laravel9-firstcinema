@@ -86,7 +86,6 @@ class UserController extends Controller
         }
 
         $data->save();
-
         return redirect()->route('myprofile');
         //
     }

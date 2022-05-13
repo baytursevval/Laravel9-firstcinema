@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    @yield('css')
+    @yield('javascript')
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -21,8 +23,7 @@
     <link rel="stylesheet" href="{{asset('assets')}}/admin/assets/css/style.css">
     <!-- End layout styles -->
     <link rel="shortcut icon" href="{{asset('assets')}}/admin/assets/images/favicon.png" />
-    @yield('css')
-    @yield('javascript')
+
 </head>
 <body>
 <div class="container-scroller">
