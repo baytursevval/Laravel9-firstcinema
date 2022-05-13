@@ -34,8 +34,15 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
 
                                 </ul>
                             </li>
-                            <li><a href="#">Blog</a></li>
-                            <li><a href="#">İletişim</a></li>
+
+                            <li><a href="{{route('aboutus')}}">Hakkımızda<span class="arrow_carrot-down"></span></a>
+                                <ul class="dropdown">
+                                    <li><a href="{{route('references')}}">Referanslar </a></li>
+
+                                </ul>
+                            </li>
+
+                            <li><a href="{{route('contact')}}">İletişim</a></li>
                             @auth
                                 <?php
                             $username=Auth::user()->name;

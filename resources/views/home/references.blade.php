@@ -1,6 +1,6 @@
 @extends('layouts.home')
 
-@section('title', 'About Us -' . $setting->title)
+@section('title', 'Referanslar -' . $setting->title)
 
 
 @section('desc')
@@ -12,19 +12,20 @@
 
 
     <div class="content-wrapper">
-        <div class="col-md-9 mx-auto">
-        <section class="content" style="background-color: #0b0c2a; color: ghostwhite">
+
+        <section class="content" style="background-color: #0b0c2a; color: white">
 
             <div class="content">
-
+                <div class="card-header"><br>
+                    <h3 class="card-title" style="color: whitesmoke">Referanslarımız</h3>
+                </div>
                 <div class="card-body">
-                    {!! $setting->aboutus !!}
+                    {!! $setting->references !!}
                 </div>
                 <div class="card-footer">
                     Footer
                 </div>
             </div>
         </section>
-        </div>
     </div>
 @endsection

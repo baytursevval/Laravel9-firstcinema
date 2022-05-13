@@ -15,6 +15,7 @@ Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('blog',[HomeController::class,'blog'])->name('blog');
 Route::get('contact',[HomeController::class,'contact'])->name('contact');
 Route::get('aboutus',[HomeController::class,'aboutus'])->name('aboutus');
+Route::get('references',[HomeController::class,'references'])->name('references');
 
 Route::get('/home',[HomeController::class,'home1'])->name('home1');
 Route::get('admin/login', [HomeController::class,'login'])->name('admin');
