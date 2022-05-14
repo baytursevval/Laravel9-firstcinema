@@ -6,6 +6,7 @@ use App\Models\Category;
 use App\Models\Comment;
 use App\Models\Film;
 use App\Models\Like;
+use App\Models\Message;
 use App\Models\Point;
 use App\Models\Setting;
 use Illuminate\Http\Request;
@@ -76,6 +77,19 @@ class HomeController extends Controller
         $setting= Setting::first();
         return view('home.contact',['setting'=>$setting]);
     }
+
+    public function sendmessage(Request $request){
+
+        $data= new Message();
+        $data->name=$request->input('name');
+        $data->email=$request->input('email');
+        $data->phone=$request->input('phone');
+        $data->subject=$request->input('subject');
+        $data->message=$request->input('message');
+        $data->save();
+        return redirect()->route('contact')->with('info','Mesajınız Alındı, Teşekkür Ederiz.');
+    }
+
     /*
      public static function getsetting(){
         return Setting::first();
