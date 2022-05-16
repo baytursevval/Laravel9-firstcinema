@@ -36,7 +36,7 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="anime__details__pic set-bg" data-setbg="{{asset('')}}storage/{{$data_film->image}}" >
-                            <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                            <div class="comment"><i class="fa fa-comments"></i> {{$yorum_sayısı}}</div>
                           <!--  <div class="view"><i class="fa fa-eye"></i> 9141</div>-->
                         </div>
                     </div>
@@ -65,28 +65,28 @@
                                         guest point
                                         @endguest
                                 </div>
-
-                                <span>Puanınız: {{$datalist_point->point}}</span>
+                                @if($datalist_point != null)
+                                 <h6 style="color: whitesmoke"> Puanınız: {{$datalist_point->point}}</h6>
+                                @endif
                             </div>
                             <p>{{$data_film->detail}}</p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Type:</span> TV Series</li>
+                                            <li><span>Type:</span> {{$data_film->category->title}}</li>
                                             <li><span>Studios:</span> Lerche</li>
                                             <li><span>Date aired:</span> Oct 02, 2019 to ?</li>
-                                            <li><span>Status:</span> Airing</li>
-                                            <li><span>Genre:</span> Action, Adventure, Fantasy, Magic</li>
+                                            <li><span>Status:</span> {{$data_film->status}}</li>
                                         </ul>
                                     </div>
                                     <div class="col-lg-6 col-md-6">
                                         <ul>
-                                            <li><span>Scores:</span>{{$data_film->point}}  / {{$data_film->point_count}}</li>
-                                            <li><span>Rating:</span> 8.5 / 161 times</li>
+                                            <li><span>Scores:</span>{{$data_film->point}} </li>
+                                            <li><span>Votes:</span> {{$data_film->point_count}}</li>
                                             <li><span>Can like:</span> {{$can_like}}</li>
                                             <li><span>Quality:</span> HD</li>
-                                            <li><span>Views:</span> 131,541</li>
+
                                         </ul>
                                     </div>
                                 </div>

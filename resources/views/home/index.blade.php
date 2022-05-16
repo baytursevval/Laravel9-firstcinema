@@ -100,9 +100,9 @@
 
                                             <a href="/filmdetay/{{$rs->id}}">
                                                 <div class="product__item__pic set-bg" data-setbg="{{asset('')}}storage/{{$rs->image}}">
-                                                    <div class="ep">18 / 18</div>
-                                                    <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                                    <!--<div class="view"><i class="fa fa-eye"></i> 9141</div>-->
+                                                    <!--    <div class="ep">18 / 18</div>
+                                                       <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                                                       <div class="view"><i class="fa fa-eye"></i> 9141</div>-->
                                                 </div>
                                             </a>
 
@@ -123,9 +123,7 @@
                 </div>
             </div>
 
-
-
-            <div class="row">
+           <div class="row">
                 <div class="col-lg-10">
                     <div class="trending__product" >
                         <div class="row" >
@@ -150,9 +148,9 @@
 
                                         <a href="/filmdetay/{{$rs->id}}">
                                             <div class="product__item__pic set-bg" data-setbg="{{asset('')}}storage/{{$rs->image}}">
-                                                <div class="ep">18 / 18</div>
-                                                <div class="comment"><i class="fa fa-comments"></i> 11</div>
-                                                <div class="view"><i class="fa fa-eye"></i> 9141</div>
+                                                <!--     <div class="ep">18 / 18</div>
+                                              <div class="comment"><i class="fa fa-comments"></i> 11</div>
+                                                    <div class="view"><i class="fa fa-eye"></i> 9141</div> -->
                                             </div>
                                         </a>
 
@@ -162,7 +160,7 @@
                                                 <li>HD</li>
                                                 <li>Movie</li>
                                             </ul>
-                                            <h5><a href="#">{{$rs->title}}</a></h5>
+                                            <h5><a href="{{route('filmdetay',['film_id'=>$rs->id])}}">{{$rs->title}}</a></h5>
                                         </div>
                                     </div>
                                 </div>
@@ -172,6 +170,7 @@
                     </div>
                 </div>
             </div>
+
         </div>
     </section>
     </section>

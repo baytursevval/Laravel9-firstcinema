@@ -21,13 +21,14 @@ class HomeController extends Controller
     public function home(){
 
         $setting= Setting::first();
+        //$puan=Film::orderBy('point','desc')->limit(8)->get();
 
          $datalist_category=Category::get();
          $datalist_slider=Film::where('image_slider','!=',null)->where('image_slider','>','')->orderBy('image_slider','desc')->limit(3)->get();
      //   foreach ($datalist_slider as $rs)             echo $rs->title. "<br>";
 
         $datalist_son =Film::limit(8)->orderBy('id','desc')->get();
-        $datalist_populer =Film::limit(4)->get();
+        $datalist_populer =Film::orderBy('point','desc')->limit(4)->get();
         return view('home.index',['datalist_slider'=>$datalist_slider,
             'datalist_son'=>$datalist_son,
             'datalist_populer'=>$datalist_populer,
@@ -132,14 +133,16 @@ class HomeController extends Controller
 
     public function filmdetay($film_id){
 
-        $data_film= DB:: table('films')->where('id', $film_id)->get()->first();
+        $data_film= Film::where('id', $film_id)->get()->first();
+
         $data_category=Category::get();
         //$rs=$datalist[0];
-
+        $yorum_sayısı=DB::table('comments')->where('film_id', $film_id)->count();
         $datalist_comment=Comment::where('film_id', $film_id)->get();
 
         // $data_user=DB::table('users')->where('id',$data_film->user_id)->get()->first();
-
+        //echo $data_film->category->title;
+        //exit();
         // echo $data_film->title; exit();
 
         if (isset(Auth::user()->id))
@@ -169,7 +172,8 @@ class HomeController extends Controller
             'datalist_comment'=>$datalist_comment,
             'can_point'=>$can_point,
             'can_like'=>$can_like,
-            'datalist_point'=>$datalist_point]);
+            'datalist_point'=>$datalist_point,
+            'yorum_sayısı'=>$yorum_sayısı]);
     }
 
 
