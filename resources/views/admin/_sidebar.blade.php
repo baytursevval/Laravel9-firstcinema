@@ -76,14 +76,7 @@
                     <span class="menu-title">Filmler</span>
                 </a>
             </li>
-            <li class="nav-item menu-items">
-                <a class="nav-link" href="pages/tables/basic-table.html">
-              <span class="menu-icon">
-                <i class="mdi mdi-table-large"></i>
-              </span>
-                    <span class="menu-title">Dizilerim</span>
-                </a>
-            </li>
+
             <li class="nav-item menu-items">
                 <a href="{{route('admin_category')}}" class="nav-link" href="pages/charts/chartjs.html">
               <span class="menu-icon">
@@ -98,6 +91,14 @@
                 <i class="mdi mdi-contacts"></i>
               </span>
                     <span class="menu-title">İletişim Mesajları</span>
+                </a>
+            </li>
+            <li class="nav-item menu-items">
+                <a class="nav-link" href="{{route('admin_faq')}}">
+              <span class="menu-icon">
+                <i class="mdi mdi-table-large"></i>
+              </span>
+                    <span class="menu-title">Faq</span>
                 </a>
             </li>
             <li class="nav-item menu-items">

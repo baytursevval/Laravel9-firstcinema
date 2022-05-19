@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\CategoryController;
+use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FilmController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\MessageController;
@@ -20,6 +21,8 @@ Route::get('references',[HomeController::class,'references'])->name('references'
 
 Route::post('sendmessage',[HomeController::class,'sendmessage'])->name('sendmessage');
 
+Route::get('faq',[HomeController::class,'faq'])->name('faq');
+
 Route::get('/home',[HomeController::class,'home1'])->name('home1');
 Route::get('admin/login', [HomeController::class,'login'])->name('admin');
 
@@ -35,7 +38,6 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
     Route::get('admin/logout', [HomeController::class,'logout'])->name('admin_logout');
     //Route::get('logout', [HomeController::class,'logout'])->name('logout');
    // Route::get('filmdetay2/{film_id}', [HomeController::class,'filmdetay2'])->name('filmdetay2');
-
 
     Route::middleware('auth')->prefix('admin')->group(function () {
     //category***********************
@@ -54,13 +56,15 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
     Route::post('/film/store', [FilmController::class, 'store'])->name('admin_film_store');
     Route::get('/film/delete/{filmid}', [FilmController::class, 'destroy'])->name('admin_film_delete');
     Route::get('/film/edit/{filmid}', [FilmController::class, 'edit'])->name('admin_film_edit');
+
     //film image gallery********************
     Route::prefix('image')->group(function (){
     Route::get('create/{film_id}', [ImageController::class, 'create'])->name('admin_image_add');
     Route::post('store/{film_id}', [ImageController::class, 'store'])->name('admin_image_store');
     Route::get('delete/{film_id}/{id}', [ImageController::class, 'destroy'])->name('admin_image_delete');
     Route::get('show', [ImageController::class, 'show'])->name('admin_image_show');
-});
+    });
+
     //message************
     Route::prefix('messages')->group(function (){
         Route::get('/', [\App\Http\Controllers\Admin\MessageController::class, 'index'])->name('admin_message');
@@ -68,23 +72,29 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
         Route::get('delete/{id}', [MessageController::class, 'destroy'])->name('admin_message_delete');
         Route::get('edit/{id}', [MessageController::class, 'edit'])->name('admin_message_edit');
         Route::get('show', [MessageController::class, 'show'])->name('admin_message_show');
-
-
     });
-
-
 
     //setting********************
     Route::get('setting', [SettingController::class,'index'])->name('admin_setting');
     Route::post('setting/update', [SettingController::class,'update'])->name('admin_setting_update');
-});
+
+        #faq***
+        Route::get('faq', [\App\Http\Controllers\Admin\FaqController::class, 'index'])->name('admin_faq');
+        Route::get('/faq/add', [FaqController::class, 'create'])->name('admin_faq_add');
+        Route::post('/faq/update/{faqid}', [FaqController::class, 'update'])->name('admin_faq_update');
+        Route::post('/faq/store', [FaqController::class, 'store'])->name('admin_faq_store');
+        Route::get('/faq/delete/{faqid}', [FaqController::class, 'destroy'])->name('admin_faq_delete');
+        Route::get('/faq/edit/{faqid}', [FaqController::class, 'edit'])->name('admin_faq_edit');
+    });
+
+
     Route::get('filmdetay/{film_id}', [HomeController::class, 'filmdetay'])->name('filmdetay');
     Route::post('comment/add/{film_id}', [CommentController::class, 'create'])->name('comment_add');
     Route::post('point/add/{film_id}', [PoıntController::class, 'addpoint'])->name('point_add');
     Route::get('likefilm/{film_id}', [HomeController::class, 'likefilm'])->name('likefilm');
     Route::get('unlikefilm/{film_id}', [HomeController::class, 'unlikefilm'])->name('unlikefilm');
 
-#user***************
+    #user***************
     Route::middleware('auth')->prefix('user')->namespace('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('myprofile');
     Route::post('/update', [UserController::class, 'update'])->name('myprofile_update');

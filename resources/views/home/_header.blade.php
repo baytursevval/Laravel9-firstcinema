@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
             <div class="col-lg-1">
                 <div class="header__logo">
                     <a href="{{route('home')}}">
-                        <img src="{{asset('assets')}}/mylogo.png" width="100px" height="50px">
+                        <img src="{{asset('assets')}}/6.jpg" width="100px" height="50px">
                     </a>
                 </div>
             </div>
@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
                             <li><a href="{{route('aboutus')}}">Hakkımızda<span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     <li><a href="{{route('references')}}">Referanslar </a></li>
-
+                                    <li><a href="{{route('faq')}}">Faq </a></li>
                                 </ul>
                             </li>
 

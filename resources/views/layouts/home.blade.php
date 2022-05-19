@@ -25,9 +25,12 @@
     <link rel="stylesheet" href="{{asset('assets')}}/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="{{asset('assets')}}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="{{asset('assets')}}/css/style.css" type="text/css">
+    @yield('css')
+    @yield('headerjs')
 </head>
 
 <body>
+
 @include('home._header')
 @yield('slider')
 

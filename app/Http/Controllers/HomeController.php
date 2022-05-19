@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use App\Models\Comment;
+use App\Models\Faq;
 use App\Models\Film;
 use App\Models\Like;
 use App\Models\Message;
@@ -96,6 +97,11 @@ class HomeController extends Controller
         return Setting::first();
     }
     */
+
+    public function faq(){
+        $datalist=Faq::all();
+        return view('home.faq',['datalist'=>$datalist]);
+    }
 
     public function login(){
         return view('admin.login');
@@ -215,7 +221,8 @@ class HomeController extends Controller
        // $data=['ad'=>'ali', 'soyad'=>'veli' ];
         //$data2=['name'=>'jack', 'lname'=>'vel' ];
 
-        return view('home.test');
+       // return view('home.test');
+        return view('home._blankdeneme');
     }
 
 public function filmkategori($categori_id){

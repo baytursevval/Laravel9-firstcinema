@@ -16,19 +16,19 @@
             <div class="container-fluid">
 
                         <div class="row">
-                            <div class="col-lg-3" style="background-color: #9fcdff " >
+                            <div class="col-lg-3" style="" >
                             <h3 class="">User panel</h3>
-                                <ul class=""> </ul>
+                                <ul class="aside-title" style=""> </ul>
                                 <li> <a href="{{route('myprofile')}}"> My profile</a> </li>
                                 <li> <a href=""> My favs</a> </li>
                                 <li> <a href="{{route('mycomments')}}"> My comments</a> </li>
                                 <li> <a href=""> log out</a> </li>
                             </div>
                             <div class="col-lg-9">
-                                <table class="table table-bordered" style="background-color: #4a8aff" >
-                                    <thead>
-                                    <tr>
-                                        <th> ID </th>
+                                <table class="table table-bordered" style="background: #0c2b4b">
+                                    <thead style="color: whitesmoke">
+                                    <tr style="color: whitesmoke">
+                                        <th > ID </th>
                                         <th> Film </th>
                                         <th> Comment </th>
                                         <th> Edit </th>
@@ -39,7 +39,7 @@
 
                                     <tbody>
                                     @foreach($datalist_comments as $rs)
-                                        <tr>
+                                        <tr style="color: whitesmoke">
                                             <td> {{$rs->id}} </td>
                                             <td> {{$rs->film_id}} </td>
                                             <td> {{$rs->comment}} </td>

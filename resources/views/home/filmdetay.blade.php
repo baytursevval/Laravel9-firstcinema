@@ -62,7 +62,7 @@
                                 @endif
                                     @endauth
                                     @guest
-                                        guest point
+                                            <h6 style="color: whitesmoke">Puan vermek için <a href="{{route('admin_login')}}">Giriş Yap</a>/Üye olunuz.</h6>
                                         @endguest
                                 </div>
                                 @if($datalist_point != null)
@@ -145,7 +145,7 @@
                     @endauth
 
                     @guest
-                        LOGIN
+                        <h5 style="color: whitesmoke">Yorum yapmak için <a href="{{route('admin_login')}}">Giriş Yap</a>/Üye olunuz.</h5>
 
                     @endguest
 

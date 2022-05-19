@@ -38,7 +38,7 @@
                                                 <li>HD</li>
                                                 <li>Movie</li>
                                             </ul>
-                                            <h5><a href="#">{{$rs->title}}</a></h5>
+                                            <h5><a href="/filmdetay/{{$rs->id}}">{{$rs->title}}</a></h5>
                                         </div>
                                     </div>
                                 </div>
