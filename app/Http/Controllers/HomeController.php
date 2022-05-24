@@ -10,6 +10,7 @@ use App\Models\Like;
 use App\Models\Message;
 use App\Models\Point;
 use App\Models\Setting;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +30,7 @@ class HomeController extends Controller
      //   foreach ($datalist_slider as $rs)             echo $rs->title. "<br>";
 
         $datalist_son =Film::limit(8)->orderBy('id','desc')->get();
-        $datalist_populer =Film::orderBy('point','desc')->limit(4)->get();
+        $datalist_populer =Film::orderBy('point','desc')->limit(8)->get();
         return view('home.index',['datalist_slider'=>$datalist_slider,
             'datalist_son'=>$datalist_son,
             'datalist_populer'=>$datalist_populer,
@@ -106,6 +107,38 @@ class HomeController extends Controller
     public function login(){
         return view('admin.login');
     }
+    public function signup(){
+
+
+        return view('admin.signup');
+    }
+
+    public function signupcheck(Request $request){
+
+        echo "aa";
+        //exit();
+
+        //$setting= Setting::first();
+        $count=User::where('email',$request->input('email'))->count();
+        //$count=$data_user->count();
+        //count($data_user);
+        echo $count;
+        if($count==1)
+        return redirect()->route('signup')->with('error','Bu Mail adresi kullanılıyor');
+        else{
+            $data=new User;
+            $data->name=$request->input('name');
+            $data->email=$request->input('email');
+                $data->password=md5($request->input('password'));
+            //$data->image=$request->input('name');
+            $data->save();
+            return redirect()->route('admin_login');
+
+        }
+
+
+    }
+
 
 
     public function logincheck(Request $request)
@@ -128,6 +161,8 @@ class HomeController extends Controller
             return view('admin.login');
             //return redirect()->back();
         }
+
+
     }
     public function logout(Request $request)
     {

@@ -20,9 +20,9 @@
                             <h3 class="">User panel</h3>
                                 <ul class="aside-title" style=""> </ul>
                                 <li> <a href="{{route('myprofile')}}"> My profile</a> </li>
-                                <li> <a href=""> My favs</a> </li>
                                 <li> <a href="{{route('mycomments')}}"> My comments</a> </li>
-                                <li> <a href=""> log out</a> </li>
+                                <li> <a href="{{route('user_film')}}"> My films</a> </li>
+                                <li> <a href="{{route('admin_logout')}}"> log out</a> </li>
                             </div>
                             <div class="col-lg-9">
                                 <table class="table table-bordered" style="background: #0c2b4b">

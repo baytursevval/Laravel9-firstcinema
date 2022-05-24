@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,16 +26,21 @@
             <div class="content-wrapper full-page-wrapper d-flex align-items-center auth login-bg">
                 <div class="card col-lg-4 mx-auto">
                     <div class="card-body px-5 py-5">
-                        <h3 class="card-title text-left mb-3">Login</h3>
-                        <form action="{{route('admin_logincheck')}}" method="post">
+                        <h3 class="card-title text-left mb-3">Üye Ol</h3>
+                        <form action="{{route('signupcheck')}}" method="post">
                             @csrf
+                            @include('home.message')
                             <div class="form-group">
-                                <label>Username or email *</label>
-                                <input id="email "type="email" name="email" class="form-control p_input">
+                                <label>Username</label>
+                                <input type="text" name="name" class="form-control p_input">
                             </div>
                             <div class="form-group">
-                                <label>Password *</label>
-                                <input id="password" type="password" name="password" class="form-control p_input">
+                                <label>Email</label>
+                                <input type="email" name="email" class="form-control p_input">
+                            </div>
+                            <div class="form-group">
+                                <label>Password</label>
+                                <input type="password" name="password" class="form-control p_input">
                             </div>
                             <div class="form-group d-flex align-items-center justify-content-between">
                                 <div class="form-check">
@@ -44,16 +50,16 @@
                                 <a href="#" class="forgot-pass">Forgot password</a>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn btn-primary btn-block enter-btn">Login</button>
+                                <button type="submit" class="btn btn-primary btn-block enter-btn">Uye Ol</button>
                             </div>
                             <div class="d-flex">
-                                <button class="btn btn-facebook mr-2 col">
+                                <button class="btn btn-facebook col mr-2">
                                     <i class="mdi mdi-facebook"></i> Facebook </button>
                                 <button class="btn btn-google col">
                                     <i class="mdi mdi-google-plus"></i> Google plus </button>
                             </div>
-                            <p class="sign-up">Don't have an Account?<a href="{{route('signup')}}"> Sign Up</a></p>
-                        </form>
+                            <p class="sign-up text-center">Already have an Account?<a href="{{route('admin_login')}}"> Sign Up</a></p>
+                             </form>
                     </div>
                 </div>
             </div>

@@ -12,12 +12,17 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CommentController;
 use App\Http\Controllers\Admin\PoıntController;
 
+Route::get('signup',[HomeController::class,'signup'])->name('signup');
+Route::post('signupcheck',[HomeController::class,'signupcheck'])->name('signupcheck');
+//Route::get('register1',[HomeController::class,'register'])->name('register');
+
 
 Route::get('/',[HomeController::class,'home'])->name('home');
 Route::get('blog',[HomeController::class,'blog'])->name('blog');
 Route::get('contact',[HomeController::class,'contact'])->name('contact');
 Route::get('aboutus',[HomeController::class,'aboutus'])->name('aboutus');
 Route::get('references',[HomeController::class,'references'])->name('references');
+
 
 Route::post('sendmessage',[HomeController::class,'sendmessage'])->name('sendmessage');
 
@@ -85,6 +90,8 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
         Route::post('/faq/store', [FaqController::class, 'store'])->name('admin_faq_store');
         Route::get('/faq/delete/{faqid}', [FaqController::class, 'destroy'])->name('admin_faq_delete');
         Route::get('/faq/edit/{faqid}', [FaqController::class, 'edit'])->name('admin_faq_edit');
+
+
     });
 
 
@@ -98,21 +105,42 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
     Route::middleware('auth')->prefix('user')->namespace('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('myprofile');
     Route::post('/update', [UserController::class, 'update'])->name('myprofile_update');
+    Route::get('/like/{user_id}', [UserController::class, 'like'])->name('user_film_like');
+    Route::get('/unlike/{film_id}', [UserController::class, 'unlike'])->name('user_film_unlike');
 
     Route::get('/mycomments', [CommentController::class, 'mycomments'])->name('mycomments');
     Route::get('/delete/comments/{id}', [CommentController::class, 'delete'])->name('del_comment');
     Route::get('/edit/comments/{id}', [CommentController::class, 'edit'])->name('edit_comment');
     Route::post('/update/comment/{id}', [CommentController::class, 'update'])->name('update_comment');
-});
 
+    Route::prefix('film')->group(function (){
+    Route::get('/', [\App\Http\Controllers\FilmController::class, 'index'])->name('user_film');
+    Route::get('add', [\App\Http\Controllers\FilmController::class, 'create'])->name('user_film_add');
+    Route::post('/update/{filmid}', [\App\Http\Controllers\FilmController::class, 'update'])->name('user_film_update');
+    Route::post('store', [\App\Http\Controllers\FilmController::class, 'store'])->name('user_film_store');
+    Route::get('delete/{filmid}', [\App\Http\Controllers\FilmController::class, 'destroy'])->name('user_film_delete');
+    Route::get('edit/{filmid}', [\App\Http\Controllers\FilmController::class, 'edit'])->name('user_film_edit');
+    });
+
+    Route::prefix('image')->group(function (){
+    Route::get('create/{film_id}', [ImageController::class, 'create'])->name('user_image_add');
+    Route::post('store/{film_id}', [ImageController::class, 'store'])->name('user_image_store');
+    Route::get('delete/{film_id}/{id}', [ImageController::class, 'destroy'])->name('user_image_delete');
+    Route::get('show', [ImageController::class, 'show'])->name('user_image_show');
+        });
+
+
+});
 
 
 Route::get('/test', [HomeController::class, 'test'])->name('test');
 Route::get('/formgonder', [HomeController::class, 'formgonder'])->name('formgonder');
 Route::get('/formgoster', [HomeController::class, 'formgoster'])->name('formgoster');
 
-Route::get('/dashboard', function () {    return view('dashboard');})->middleware(['auth'])->name('dashboard');
+Route::get('/dashboard', function () {
+    return view('dashboard');})->middleware(['auth'])->name('dashboard');
 //Route::get('/dashboard', function () {    return view('dashboard');})->name('dashboard');
+
 
 
 require __DIR__.'/auth.php';

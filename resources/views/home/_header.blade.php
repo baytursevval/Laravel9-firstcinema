@@ -38,7 +38,7 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
                             <li><a href="{{route('aboutus')}}">Hakkımızda<span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
                                     <li><a href="{{route('references')}}">Referanslar </a></li>
-                                    <li><a href="{{route('faq')}}">Faq </a></li>
+                                    <li><a href="{{route('faq')}}">Sıkça Sorulan Sorular </a></li>
                                 </ul>
                             </li>
 
@@ -49,9 +49,12 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
                                  ?>
                             <li><a href="#">{{$username}} <span class="arrow_carrot-down"></span></a>
                                 <ul class="dropdown">
-                                        <li><a href="{{route('myprofile')}}">My Profile </a></li>
-                                    <li><a href="#">My Profile </a></li>
-                                    <li><a href="#">My Profile </a></li>
+                                    <li><a href="{{route('myprofile')}}">My Profile </a></li>
+                                    <li><a href="{{route('mycomments')}}">My Reviews </a></li>
+                                    <li><a href="{{route('user_film_like',['user_id'=>Auth::user()->id])}}">My favs</a></li>
+                                    <li><a href="{{route('user_film')}}">My Films </a></li>
+                                    <li><a href="{{route('admin_logout')}}">Logout </a></li>
+
                                 </ul>
                             </li>
                             @endauth

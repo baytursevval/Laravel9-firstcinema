@@ -17,6 +17,7 @@
           rel="stylesheet">
 
     <!-- Css Styles -->
+
     <link rel="stylesheet" href="{{asset('assets')}}/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="{{asset('assets')}}/css/plyr.css" type="text/css">
     <link rel="stylesheet" href="{{asset('assets')}}/css/font-awesome.min.css" type="text/css">
@@ -25,6 +26,7 @@
     <link rel="stylesheet" href="{{asset('assets')}}/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="{{asset('assets')}}/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="{{asset('assets')}}/css/style.css" type="text/css">
+    <link rel=”stylesheet” href=”https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css”>
     @yield('css')
     @yield('headerjs')
 </head>

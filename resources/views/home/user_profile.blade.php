@@ -16,12 +16,13 @@
             <div class="container-fluid">
 
                         <div class="row">
-                            <div class="col-lg-3" style="bg-clear:both; color: red" >
+                            <div class="col-lg-3" style="align-content: baseline" >
                             <h3 class="class-deneme" autofocus > User panel</h3>
-                                <ul class="" style="color:"> </ul>
+                                <ul class="" style=""> </ul>
                                 <li> <a href="{{route('myprofile')}}"> My profile</a> </li>
-                                <li> <a href=""> My favs</a> </li>
+                                <li> <a href="{{route('user_film_like',['user_id'=>Auth::user()->id])}}"> My favs</a></li>
                                 <li> <a href="{{route('mycomments')}}"> My comments</a> </li>
+                                <li> <a href="{{route('user_film')}}"> My films</a> </li>
                                 <li> <a href="{{route('admin_logout')}}"> log out</a> </li>
                             </div>
                             <div class="col-lg-9">

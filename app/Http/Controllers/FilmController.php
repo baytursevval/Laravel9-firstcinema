@@ -1,19 +1,16 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Film;
 use Illuminate\Http\Request;
-use Illuminate\Session\Store;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
-
 class FilmController extends Controller
 {
-
     public function filmdetay($filmid){
 
         return view('home.filmdetay',['filmid'=>$filmid]);
@@ -25,8 +22,9 @@ class FilmController extends Controller
      */
     public function index()
     {
-        $datalist = DB::table('films')->get();
-        return view('admin.film', ['datalist'=>$datalist]);
+        $user_id=Auth::user()->id;
+        $datalist = Film::where('user_id',$user_id)->get();
+        return view('home.user_film', ['datalist'=>$datalist]);
     }
 
     /**
@@ -37,7 +35,7 @@ class FilmController extends Controller
     public function create()
     {
         $data_category= DB::table('categories')->get();
-        return view ('admin.film_add', ['data_category'=>$data_category]);
+        return view ('home.user_film_add', ['data_category'=>$data_category]);
     }
 
     /**
@@ -50,26 +48,26 @@ class FilmController extends Controller
     {
 
         $data=new Film;
-
         $data->category_id=$request->input('category_id');
         //$data->update(15);
 
         //$data= new Film;
 
-/*
-        DB::table('films')->update([
-            'user_id'=> "1",
-            'title' => $request->input('title'),
-            'keywords' => $request->input('keywords'),
-            'description' => $request->input('description'),
-            'image' => Storage::putFile('images', $request->file('image')),
-            'category_id' => $request->input('category_id'),
-            'detail' => $request->input('detail'),
-            'videolink' => $request->input('videolink'),
-            'status' => $request->input('status')
-        ])  ;
-*/
-        $data->user_id=1;
+        /*
+                DB::table('films')->update([
+                    'user_id'=> "1",
+                    'title' => $request->input('title'),
+                    'keywords' => $request->input('keywords'),
+                    'description' => $request->input('description'),
+                    'image' => Storage::putFile('images', $request->file('image')),
+                    'category_id' => $request->input('category_id'),
+                    'detail' => $request->input('detail'),
+                    'videolink' => $request->input('videolink'),
+                    'status' => $request->input('status')
+                ])  ;
+        */
+        $user_id=Auth::user()->id;
+        $data->user_id=$user_id;
         $data->id = $request->input('id');
         $data->title = $request->input('title');
         $data->keywords = $request->input('keywords');
@@ -87,7 +85,7 @@ class FilmController extends Controller
         $data->save();
 
 
-        return redirect()->route('admin_film');
+        return redirect()->route('user_film');
 
     }
 
@@ -113,9 +111,9 @@ class FilmController extends Controller
         $data = DB::table('films')->find($filmid);
         $data_category= Category::all();
 
-     //   $datalist = DB::table('films')->get()->where('parent_id', 0);
+        //   $datalist = DB::table('films')->get()->where('parent_id', 0);
 
-        return view('admin.film_edit', ['data'=>$data, 'data_category'=>$data_category, 'filmid'=>$filmid]);
+        return view('home.user_film_edit', ['data'=>$data, 'data_category'=>$data_category, 'filmid'=>$filmid]);
     }
 
     /**
@@ -132,20 +130,20 @@ class FilmController extends Controller
         $data->keywords = $request->input('keywords');
         $data->description = $request->input('description');
         if ($request->file('image')!=null) {
-         $data->image = Storage::putFile('images', $request->file('image'));
+            $data->image = Storage::putFile('images', $request->file('image'));
         }
         if ($request->file('image_slider')!=null) {
             $data->image_slider = Storage::putFile('images_slider', $request->file('image_slider'));
         }
         $data->category_id = $request->input('category_id');
         $data->detail = $request->input('detail');
-  if ($request->file('videolink')!=null) {
-      $data->videolink = Storage::putFile('videos', $request->file('videolink'));
-  }
+        if ($request->file('videolink')!=null) {
+            $data->videolink = Storage::putFile('videos', $request->file('videolink'));
+        }
         $data->status = $request->input('status');
         $data->save();
 
-        return redirect()->route('admin_film');
+        return redirect()->route('user_film');
     }
 
     /**
@@ -157,6 +155,6 @@ class FilmController extends Controller
     public function destroy(Film $film,$id)
     {
         DB::table('films')->where('id', '=', $id)->delete();
-        return redirect()->route('admin_film');
+        return redirect()->route('user_film');
     }
 }

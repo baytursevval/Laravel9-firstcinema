@@ -45,7 +45,7 @@
                             <div class="anime__details__title">
                                 <h3>  {{$data_film->title}}    </h3>
 
-                                <span>{{$data_film->description}}</span>
+                                <span>{!!$data_film->description!!}</span>
                             </div>
                             <div class="anime__details__rating">
                                 <div class="rating">
@@ -69,7 +69,7 @@
                                  <h6 style="color: whitesmoke"> Puanınız: {{$datalist_point->point}}</h6>
                                 @endif
                             </div>
-                            <p>{{$data_film->detail}}</p>
+                            <p>{!! $data_film->detail !!}</p>
                             <div class="anime__details__widget">
                                 <div class="row">
                                     <div class="col-lg-6 col-md-6">
