@@ -115,7 +115,7 @@ class HomeController extends Controller
 
     public function signupcheck(Request $request){
 
-        echo "aa";
+        //echo "aa";
         //exit();
 
         //$setting= Setting::first();
@@ -130,6 +130,8 @@ class HomeController extends Controller
             $data->name=$request->input('name');
             $data->email=$request->input('email');
                 $data->password=md5($request->input('password'));
+
+           // $data->password=encrypt($request->input('password'));
             //$data->image=$request->input('name');
             $data->save();
             return redirect()->route('admin_login');

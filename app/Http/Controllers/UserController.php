@@ -34,7 +34,7 @@ class UserController extends Controller
 
 
         $like_film="True";
-        $data_film= Film::where('user_id',Auth::user()->id)->get()->first();
+        $data_film=Film::where('user_id',$user_id)->get()->first();
 
         $data_user=User::where('id',Auth::user()->id)->get()->first();
         //$datalist_films =Film::where('id',Auth::user()->id)->get()->all();

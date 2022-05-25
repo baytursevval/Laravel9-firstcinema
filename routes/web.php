@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FilmController;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\MessageController;
+use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\UserController;
@@ -45,6 +46,8 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
    // Route::get('filmdetay2/{film_id}', [HomeController::class,'filmdetay2'])->name('filmdetay2');
 
     Route::middleware('auth')->prefix('admin')->group(function () {
+
+        Route::middleware('admin')->group(function () {
     //category***********************
     Route::get('/', [\App\Http\Controllers\Admin\HomeController::class,'index'])->name('admin_category');
     Route::get('category', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin_category');
@@ -92,8 +95,8 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
         Route::get('/faq/edit/{faqid}', [FaqController::class, 'edit'])->name('admin_faq_edit');
 
 
-    });
-
+        }); #admin
+    }); #auth
 
     Route::get('filmdetay/{film_id}', [HomeController::class, 'filmdetay'])->name('filmdetay');
     Route::post('comment/add/{film_id}', [CommentController::class, 'create'])->name('comment_add');

@@ -29,7 +29,6 @@
 
                                 <form action="{{route('myprofile_update')}}"  method="post" enctype="multipart/form-data">
                                     @csrf
-
                                     <table border="2" bgcolor="#f5f5f5">
                                         <tr>
                                         <th width="200px">  <label for="">User Image</label></th>
