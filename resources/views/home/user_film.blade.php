@@ -26,6 +26,12 @@
                             <div class="col-lg-3" style="" >
                             <h3 class="">User panel</h3>
                                 <ul class="aside-title" style=""> </ul>
+                                @php
+                                    $userRoles=\Illuminate\Support\Facades\Auth::user()->roles->pluck('name');
+                                @endphp
+                                @if($userRoles->contains('admin'))
+                                    <li> <a href="{{route('adminhome')}}" target="_blank">Admin Panel</a> </li>
+                                @endif
                                 <li> <a href="{{route('myprofile')}}"> My profile</a> </li>
                                 <li> <a href="{{route('user_film_like',['user_id'=>Auth::user()->id])}}"> My favs</a> </li>
                                 <li> <a href="{{route('mycomments')}}"> My comments</a> </li>

@@ -3,8 +3,10 @@
 use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\FaqController;
 use App\Http\Controllers\Admin\FilmController;
+use App\Http\Controllers\Admin\HomeControllerAdmin;
 use App\Http\Controllers\Admin\ImageController;
 use App\Http\Controllers\Admin\MessageController;
+
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\SettingController;
 use App\Http\Controllers\HomeController;
@@ -30,7 +32,7 @@ Route::post('sendmessage',[HomeController::class,'sendmessage'])->name('sendmess
 Route::get('faq',[HomeController::class,'faq'])->name('faq');
 
 Route::get('/home',[HomeController::class,'home1'])->name('home1');
-Route::get('admin/login', [HomeController::class,'login'])->name('admin');
+//Route::get('admin/login', [HomeController::class,'login'])->name('admin');
 
 Route::get('/filmkategori/{category_id}', [HomeController::class, 'filmkategori'])->name('filmkategori');
 
@@ -38,7 +40,9 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
 //Route::get('searchresult', [HomeController::class,'searchresult'])->name('searchresult');
 
     //Admin********************
-    Route::get('/admin', [\App\Http\Controllers\Admin\HomeController::class,'index'])->middleware('auth')->name('adminhome');
+
+    Route::get('/admin2', [HomeControllerAdmin::class,'index'])->name('adminhome2');
+    //Route::get('admin2',function (){return view('index');})->name('admin2');
     Route::get('admin/login', [HomeController::class,'login'])->name('admin_login');
     Route::post('/admin/logincheck', [HomeController::class,'logincheck'])->name('admin_logincheck');
     Route::get('admin/logout', [HomeController::class,'logout'])->name('admin_logout');
@@ -48,8 +52,9 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
     Route::middleware('auth')->prefix('admin')->group(function () {
 
         Route::middleware('admin')->group(function () {
+            Route::get('/admin', [HomeControllerAdmin::class,'index'])->name('adminhome');
     //category***********************
-    Route::get('/', [\App\Http\Controllers\Admin\HomeController::class,'index'])->name('admin_category');
+    Route::get('/', [\App\Http\Controllers\Admin\HomeControllerAdmin::class,'index'])->name('admin_category');
     Route::get('category', [\App\Http\Controllers\Admin\CategoryController::class, 'index'])->name('admin_category');
     Route::get('category/add', [\App\Http\Controllers\Admin\CategoryController::class, 'add'])->name('admin_category_add');
     Route::post('category/create', [\App\Http\Controllers\Admin\CategoryController::class, 'create'])->name('admin_category_create');
@@ -94,6 +99,19 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
         Route::get('/faq/delete/{faqid}', [FaqController::class, 'destroy'])->name('admin_faq_delete');
         Route::get('/faq/edit/{faqid}', [FaqController::class, 'edit'])->name('admin_faq_edit');
 
+Route::prefix('user')->group(function (){
+
+Route::get('/', [\App\Http\Controllers\Admin\UserController::class, 'index'])->name('admin_user');
+Route::post('create', [\App\Http\Controllers\Admin\UserController::class, 'create'])->name('admin_user_add');
+Route::post('', [\App\Http\Controllers\Admin\UserController::class, 'store'])->name('admin_user_store');
+Route::get('edit/{id}', [\App\Http\Controllers\Admin\UserController::class, 'edit'])->name('admin_user_edit');
+Route::post('update/{id}', [\App\Http\Controllers\Admin\UserController::class, 'update'])->name('admin_user_update');
+Route::get('delete/{id}', [\App\Http\Controllers\Admin\UserController::class, 'delete'])->name('admin_user_delete');
+Route::get('userrole/{id}', [\App\Http\Controllers\Admin\UserController::class, 'user_roles'])->name('admin_user_roles');
+Route::post('userrolestore/{id}', [\App\Http\Controllers\Admin\UserController::class, 'user_role_store'])->name('admin_user_role_add');
+Route::get('userroledelete/{userid}/{roleid}', [\App\Http\Controllers\Admin\UserController::class, 'user_role_delete'])->name('admin_user_role_delete');
+
+});
 
         }); #admin
     }); #auth

@@ -134,7 +134,8 @@ class HomeController extends Controller
            // $data->password=encrypt($request->input('password'));
             //$data->image=$request->input('name');
             $data->save();
-            return redirect()->route('admin_login');
+            //return redirect()->route('admin_login');
+            return view('admin.login');
 
         }
 
@@ -152,7 +153,7 @@ class HomeController extends Controller
                 $request->session()->regenerate();
 
                 return redirect()->route('home');
-
+                    //return redirect()->intended('defaultpage');
             }
             return back()->withErrors([
                 'email'=>'The provided credentails do not match our records.',
@@ -259,7 +260,7 @@ class HomeController extends Controller
         //$data2=['name'=>'jack', 'lname'=>'vel' ];
 
        // return view('home.test');
-        return view('home._blankdeneme');
+        return view('home.test');
     }
 
 public function filmkategori($categori_id){

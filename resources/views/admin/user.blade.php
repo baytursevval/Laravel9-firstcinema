@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
 
-@section('title', ' Film ')
+@section('title', ' Users ')
 
 @section('content')
     <div class="content-wrapper">
@@ -26,28 +26,26 @@
 
             <div class="card">
                 <div class="card-header">
-                    <h3 class="card-title">Film Tablosu</h3>
-
+                    <h3 class="card-title">Kullanıcılar Tablosu</h3>
+                    @include('home.message')
                 </div>
                 <div class="card-body">
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <a href="{{route('admin_film_add')}}">
-                                <button type="button" class="btn btn-primary btn-rounded btn-fw">Film Ekle</button>
-                                </a>
+
                                 <div class="table-responsive">
-                                    <table class="table table-bordered" >
+                                    <table class="table table-bordered">
                                         <thead>
                                         <tr>
-                                            <th> Resim </th>
                                             <th> ID </th>
-                                            <th> Title </th>
-                                            <th> Kategori Id </th>
-                                            <th> Resim Gallery</th>
+                                            <th> Image </th>
+                                            <th> Name </th>
+                                            <th> Email </th>
+                                            <th> Roles </th>
                                             <th> Edit </th>
                                             <th> Delete </th>
-                                            <th> Detail </th>
+
 
                                         </tr>
                                         </thead>
@@ -55,24 +53,25 @@
                                         <tbody>
                                         @foreach($datalist as $rs)
                                         <tr>
+                                            <td> {{$rs->id}} </td>
                                             <td> @if ($rs->image)
                                                     <img src="{{asset('')}}storage/{{$rs->image}}" style="width: 50px; height:50px">
                                                 @endif
                                             </td>
-                                            <td> {{$rs->id}} </td>
-                                            <td> {{$rs->title}} </td>
-                                            <td> {{$rs->category_id}} </td>
-                                            <th> <a href="{{route('admin_image_add', ['film_id'=>$rs->id])}}" onclick="return !window.open(this.href, '','top=50 left=100 width=1100, height=700')">
-                                                    <div class="col-sm-6 col-md-4 col-lg-3">
-                                                        <i class="mdi mdi-file-import"></i>
-                                                    </div></a>
-                                            </th>
-                                            <td> <a href="{{route('admin_film_edit', ['filmid'=>$rs->id])}}"> <i class="mdi mdi-tooltip-edit"></i> </a></td>
-                                            <td><a href="{{route('admin_film_delete', ['filmid'=>$rs->id])}}" onclick="return confirm('Are you sure?')" > <div class="col-sm-6 col-md-4 col-lg-3">
+                                            <td> {{$rs->name}} </td>
+                                            <td> {{$rs->email}} </td>
+                                            <td>@foreach($rs->roles as $row)
+                                            {{$row->name}},
+                                                @endforeach
+                                            <a href="{{route('admin_user_roles',['id'=>$rs->id])}}" onclick="return !window.open(this.href,'','top=100 left=300 width=800,height=600')">
+                                                <i class="mdi mdi-bookmark-plus"></i>
+                                            </a>
+                                            </td>
+                                            <td> <a href="{{route('admin_user_edit', ['id'=>$rs->id])}}"> <i class="mdi mdi-tooltip-edit"></i> </a></td>
+                                            <td><a href="{{route('admin_user_delete', ['id'=>$rs->id])}}" onclick="return confirm('Are you sure?')" > <div class="col-sm-6 col-md-4 col-lg-3">
                                                         <i class="mdi mdi-delete"></i>
                                                     </div> </a></td>
 
-                                            <td> {{$rs->detail}}  </td>
                                         </tr>
 
                                         @endforeach

@@ -74,7 +74,7 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
                 <div class="header__right">
                 <!--    <input name="search" type="text" placeholder="ara" width="10 px"> -->
                     @guest
-                    <a href="{{route('login')}}"><span class="icon_profile"></span>Giriş Yap</a>
+                    <a href="{{route('admin_login')}}"><span class="icon_profile"></span>Giriş Yap</a>
                     @endguest
 
                     @auth

@@ -20,7 +20,7 @@ echo $data[0]->category->title;
 
 
 
-<h1>hello</h1>
+<h1>{{route('adminhome2')}}</h1>
 
 
         <br>
