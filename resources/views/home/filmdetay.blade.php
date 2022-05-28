@@ -21,7 +21,7 @@
                         ?>
                         <a href="{{route('home')}}"><i class="fa fa-home"></i> Ana Sayfa</a>
                         <a href="#">Kategoriler</a>
-                        <span><a href="{{route('filmkategori',['category_id'=>$data_film->category_id])}}"  >  {{$cname}} Filmleri </a>   </span>
+                        <span><a href="{{route('filmkategori',['category_id'=>$data_film->category_id])}}">{{$cname}} Filmleri </a>   </span>
                     </div>
                 </div>
             </div>

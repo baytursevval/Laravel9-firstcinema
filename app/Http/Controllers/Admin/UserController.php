@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Role;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class UserController extends Controller
@@ -57,6 +58,13 @@ class UserController extends Controller
         //
     }
 
+    public function delete(User $user, $id)
+    {
+
+        DB::table('users')->where('id', '=', $id)->delete();
+        return redirect()->route('admin_user');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -74,9 +82,13 @@ class UserController extends Controller
      * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $user, $id)
     {
         //
+        $data=User::find($id);
+        $datalist=Role::all()->sortBy('name');
+
+        return view('admin.user_show',['data'=>$data,'datalist'=>$datalist]);
     }
 
     /**

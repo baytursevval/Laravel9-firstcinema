@@ -129,11 +129,23 @@ class HomeController extends Controller
             $data=new User;
             $data->name=$request->input('name');
             $data->email=$request->input('email');
-                $data->password=md5($request->input('password'));
-
-           // $data->password=encrypt($request->input('password'));
-            //$data->image=$request->input('name');
+                $data->password=bcrypt($request->input('password'));
             $data->save();
+
+            if($request->isMethod('post'))
+            {
+                $credentials = $request->only('email','password');
+                if(Auth::attempt($credentials)) {
+                    $request->session()->regenerate();
+                    //echo "user=" . Auth::user()->id;
+                    return redirect()->route('home');
+                    //return redirect()->intended('defaultpage');
+                }
+               return back()->withErrors([
+                    'email'=>'The provided credentails do not match our records.',
+                ]);
+            }
+            
             //return redirect()->route('admin_login');
             return view('admin.login');
 
@@ -260,15 +272,32 @@ class HomeController extends Controller
         //$data2=['name'=>'jack', 'lname'=>'vel' ];
 
        // return view('home.test');
+        echo bcrypt('123456789');
+        if (bcrypt('123456789')=='$2y$10$oJ6nSwuFRj2qjxlXnvLcve4E7T6Uwss.j7P9CvGX/jQgrVSAMrwwS')
+            echo "True";
         return view('home.test');
     }
 
 public function filmkategori($categori_id){
+        $data_category=Category::get()->first();
+        $datalist = Film::where('category_id', $categori_id)->get();
 
-    $datalist = DB::table('Films')->where('category_id', $categori_id)->limit('8')->get();
-        return view('home.filmkategori', ['datalist'=>$datalist]);
+        return view('home.filmkategori', ['datalist'=>$datalist,'data_category'=>$data_category]);
 }
 
+    public function tumfilmler(){
 
+        $datalist = DB::table('Films')->orderBy('id','desc')->get();
+        return view('home.tumfilmler', ['datalist'=>$datalist]);
+    }
+
+    public function populerfilmler(){
+
+        //$datalist=Film::orderBy('point')->get();
+
+       // $yorum_sayısı=DB::table('comments')->where('film_id', $film_id)->count();
+        $datalist = DB::table('Films')->orderBy('point','desc')->get();
+        return view('home.populerfilmler', ['datalist'=>$datalist]);
+    }
 
 }

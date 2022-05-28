@@ -35,6 +35,8 @@ Route::get('/home',[HomeController::class,'home1'])->name('home1');
 //Route::get('admin/login', [HomeController::class,'login'])->name('admin');
 
 Route::get('/filmkategori/{category_id}', [HomeController::class, 'filmkategori'])->name('filmkategori');
+Route::get('/tumfilmler', [HomeController::class, 'tumfilmler'])->name('tumfilmler');
+Route::get('/populerfilmler', [HomeController::class, 'populerfilmler'])->name('populerfilmler');
 
 Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearch');
 //Route::get('searchresult', [HomeController::class,'searchresult'])->name('searchresult');
@@ -79,7 +81,7 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
     });
 
     //message************
-    Route::prefix('messages')->group(function (){
+        Route::prefix('messages')->group(function (){
         Route::get('/', [\App\Http\Controllers\Admin\MessageController::class, 'index'])->name('admin_message');
         Route::post('update/{id}', [MessageController::class, 'update'])->name('admin_message_update');
         Route::get('delete/{id}', [MessageController::class, 'destroy'])->name('admin_message_delete');
@@ -87,9 +89,9 @@ Route::post('filmsearch', [HomeController::class,'filmsearch'])->name('filmsearc
         Route::get('show', [MessageController::class, 'show'])->name('admin_message_show');
     });
 
-    //setting********************
-    Route::get('setting', [SettingController::class,'index'])->name('admin_setting');
-    Route::post('setting/update', [SettingController::class,'update'])->name('admin_setting_update');
+        //setting********************
+        Route::get('setting', [SettingController::class,'index'])->name('admin_setting');
+        Route::post('setting/update', [SettingController::class,'update'])->name('admin_setting_update');
 
         #faq***
         Route::get('faq', [\App\Http\Controllers\Admin\FaqController::class, 'index'])->name('admin_faq');
@@ -110,8 +112,15 @@ Route::get('delete/{id}', [\App\Http\Controllers\Admin\UserController::class, 'd
 Route::get('userrole/{id}', [\App\Http\Controllers\Admin\UserController::class, 'user_roles'])->name('admin_user_roles');
 Route::post('userrolestore/{id}', [\App\Http\Controllers\Admin\UserController::class, 'user_role_store'])->name('admin_user_role_add');
 Route::get('userroledelete/{userid}/{roleid}', [\App\Http\Controllers\Admin\UserController::class, 'user_role_delete'])->name('admin_user_role_delete');
+Route::get('show/{id}', [\App\Http\Controllers\Admin\UserController::class, 'show'])->name('admin_user_show');
 
 });
+            //******admin comments
+        Route::get('/comments', [CommentController::class, 'index'])->name('admin_comment');
+        Route::post('/comment/update/{id}', [CommentController::class, 'adminupdate'])->name('admin_comment_update');
+        Route::get('delete/{id}', [CommentController::class, 'admindestroy'])->name('admin_comment_delete');
+        Route::get('comment/edit/{id}', [CommentController::class, 'adminedit'])->name('admin_comment_edit');
+        Route::get('show', [CommentController::class, 'adminshow'])->name('admin_comment_show');
 
         }); #admin
     }); #auth
@@ -158,10 +167,15 @@ Route::get('/test', [HomeController::class, 'test'])->name('test');
 Route::get('/formgonder', [HomeController::class, 'formgonder'])->name('formgonder');
 Route::get('/formgoster', [HomeController::class, 'formgoster'])->name('formgoster');
 
-Route::get('/dashboard', function () {
-    return view('dashboard');})->middleware(['auth'])->name('dashboard');
-//Route::get('/dashboard', function () {    return view('dashboard');})->name('dashboard');
-
+//Route::get('/dashboard', function () {
+ //      return view('dashboard');})->middleware(['auth'])->name('dashboard');
+ //   });
+  //  Route::get('/dashboard', function () {
+   //     return view('dashboard');
+  //  })->name('dashboard');
+Route::get('/welcome',  function () {
+        return view('welcome');} );
+    //   });->name('formgoster');
 
 
 require __DIR__.'/auth.php';

@@ -17,7 +17,7 @@
             <div class="card">
                 <div class="card-header">
                     <h3 class="card-title">Mesaj Detayı</h3>
-@include('home.message')
+                @include('home.message')
                 </div>
                 <div class="card-body">
                     <div class="card">

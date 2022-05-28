@@ -139,9 +139,9 @@ class FilmController extends Controller
         }
         $data->category_id = $request->input('category_id');
         $data->detail = $request->input('detail');
-  if ($request->file('videolink')!=null) {
-      $data->videolink = Storage::putFile('videos', $request->file('videolink'));
-  }
+        if ($request->file('videolink')!=null) {
+        $data->videolink = Storage::putFile('videos', $request->file('videolink'));
+        }
         $data->status = $request->input('status');
         $data->save();
 

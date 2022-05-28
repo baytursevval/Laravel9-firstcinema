@@ -12,17 +12,12 @@
                         <div class="row" >
                             <div class="col-lg-8 col-md-8 col-sm-8">
                                 <div class="section-title">
-                                   @php
-                                    foreach ($datalist as $rs)
-                                    $cname=$data_category->title;
-                                    @endphp
-                                    <h4>{{$rs->category->title}} Filmleri</h4>
-
+                                    <h4>Vıew All</h4>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-4 col-sm-4">
                                 <div class="btn__all">
-
+                                    <a href="#" class="primary-btn">Popüler Filmler <span class="arrow_right"></span></a>
                                 </div>
                             </div>
                         </div>
@@ -35,6 +30,7 @@
 
                                         <a href="/filmdetay/{{$rs->id}}">
                                             <div class="product__item__pic set-bg" data-setbg="{{asset('')}}storage/{{$rs->image}}">
+                                                <!--<div class="comment"><i class="fa fa-comments"></i></div>-->
                                             </div>
                                         </a>
 

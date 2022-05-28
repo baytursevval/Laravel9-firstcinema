@@ -24,7 +24,7 @@ use Illuminate\Support\Facades\Auth;$datalist = DB::table('categories')->get();
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="{{route('home')}}">Anasayfa</a></li>
-                            <li><a href="{{route('admin_category')}}">Kategoriler <span class="arrow_carrot-down"></span></a>
+                            <li><a href="#">Kategoriler <span class="arrow_carrot-down"></span></a>
 
                                 <ul class="dropdown">
                                     @foreach ($datalist as $item)

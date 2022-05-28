@@ -19,17 +19,42 @@ class CommentController extends Controller
      */
     public function index()
     {
-        //
-    }
 
+        $datalist_comment = Comment::all();
+        return view('admin.comment',['datalist_comment'=>$datalist_comment]);
+    }
+    public function adminedit(Comment $comment, $id)
+    {
+        $data=Comment::find($id);
+      //  $data->status= 'True';
+      //  $data->save();
+        return view('admin.comment_edit',['data'=>$data]);
+    }
+    public function adminupdate(Request $request, Comment $comment, $id)
+    {
+       //echo   "aa"; exit();
+        $data=Comment::find($id);
+       // echo $data->status; echo "<br>";
+        //echo $request->input('status'); echo "<br>";
+       //exit();
+        $data->status=$request->input('status');
+        $data->save();
+        return back()->with('success', 'Yorum Güncellendi');
+
+    }
+    public function admindestroy(Comment $comment, $id)
+    {
+        $data=Comment::find($id);
+        $data->delete();
+        return redirect()->route('admin_comment')->with('success','Yorum Silindi.');
+    }
     /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request, $film_id )
+    public function create(Request $request, $film_id)
     {
-
         //$user_id=
 
         //echo "film id= $film_id  <br>";
@@ -43,6 +68,7 @@ class CommentController extends Controller
         $data->save();
         return redirect()->route('filmdetay',['film_id'=>$film_id]);
     }
+
 
     /**
      * Store a newly created resource in storage.
@@ -68,11 +94,12 @@ class CommentController extends Controller
         return redirect()->route('mycomments');
     }
 
-
     public function show(Comment $comment)
     {
         //
+
     }
+
 
 
     public function edit(Comment $comment, $id)

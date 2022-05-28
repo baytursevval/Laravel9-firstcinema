@@ -42,8 +42,9 @@
 
                                     </tr>
                                     </thead>
-
+                                    @include('home.message')
                                     <tbody>
+
                                     @foreach($datalist_comments as $rs)
                                         <tr style="color: whitesmoke">
                                             <td> {{$rs->id}} </td>
