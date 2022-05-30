@@ -145,7 +145,7 @@ class HomeController extends Controller
                     'email'=>'The provided credentails do not match our records.',
                 ]);
             }
-            
+
             //return redirect()->route('admin_login');
             return view('admin.login');
 
@@ -230,6 +230,18 @@ class HomeController extends Controller
             'can_like'=>$can_like,
             'datalist_point'=>$datalist_point,
             'yorum_sayısı'=>$yorum_sayısı]);
+    }
+
+    public function filmfragman($film_id)
+    {
+        $data_film=Film::where('id', $film_id)->get()->first();
+        $data_category=Category::get();
+
+        return view('home.filmfragman',['film_id'=>$film_id,
+            'data_film'=>$data_film,
+            'data_category'=>$data_category]);
+
+
     }
 
 

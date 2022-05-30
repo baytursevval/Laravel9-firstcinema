@@ -101,7 +101,7 @@
 
                                     @endauth
 
-                                <a href="#" class="watch-btn"><span>Watch Now</span> <i
+                                <a href="{{route('filmfragman',['film_id'=>$data_film->id])}}" class="watch-btn"><span>Watch Now</span> <i
                                         class="fa fa-angle-right"></i></a>
                             </div>
                         </div>

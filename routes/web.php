@@ -131,6 +131,8 @@ Route::get('show/{id}', [\App\Http\Controllers\Admin\UserController::class, 'sho
     Route::get('likefilm/{film_id}', [HomeController::class, 'likefilm'])->name('likefilm');
     Route::get('unlikefilm/{film_id}', [HomeController::class, 'unlikefilm'])->name('unlikefilm');
 
+    Route::get('filmfragman/{film_id}', [HomeController::class, 'filmfragman'])->name('filmfragman');
+
     #user***************
     Route::middleware('auth')->prefix('user')->namespace('user')->group(function () {
     Route::get('/', [UserController::class, 'index'])->name('myprofile');

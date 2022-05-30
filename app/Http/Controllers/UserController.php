@@ -26,30 +26,29 @@ class UserController extends Controller
 
     public function like($user_id)
     {
-
+        //echo "fff";
+        //exit();
         if (isset(Auth::user()->id))
             $user_id=Auth::user()->id;
         else
             $user_id=0;
 
-
         $like_film="True";
-        $data_film=Film::where('user_id',$user_id)->get()->first();
+
 
         $data_user=User::where('id',Auth::user()->id)->get()->first();
         //$datalist_films =Film::where('id',Auth::user()->id)->get()->all();
-        $datalist_like=Like::where('user_id', $user_id)->get();
-        //foreach ($datalist_like as $rs)
-         //  echo $rs->user_id;
-
+        $datalist_like=Like::where('user_id', $user_id)->where('like', 'True')->get();
+      //  print_r($datalist_like);
+        foreach ($datalist_like as $rs)
+         echo $rs->film->title."<br>";
+        exit();
 
         //$datalist_like=Like::find($user_id)->get();
        // $datalist_like[1]=$datalist_like[0];
         //print_r($datalist_like);
         //exit();
-        return view('home.user_film_like',['data_user'=>$data_user,
-            'datalist_like'=>$datalist_like,
-            'data_film'=>$data_film]);
+        return view('home.user_film_like',['datalist_like'=>$datalist_like]);
     }
 
     public function unlike($film_id, Like $like)

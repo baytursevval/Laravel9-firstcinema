@@ -56,7 +56,7 @@
                                                         <tbody>
 
                                                         @foreach($datalist_like as $rs)
-                                                            @if($rs->like=="True")
+
                                                         <tr>
                                                             <td>{{$rs->film->id}}</td>
                                                             <td> @if ($rs->film->image)
@@ -68,7 +68,6 @@
                                                             <td><a href="{{route('user_film_unlike',['film_id'=>$rs->film_id])}}">
                                                                     <i class="fa fa-close"></i></a></td>
                                                         </tr>
-                                                            @endif
                                                         @endforeach
 
                                                         </tbody>
