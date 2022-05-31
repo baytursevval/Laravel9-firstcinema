@@ -50,8 +50,8 @@ class HomeController extends Controller
        return view('home.filmsearch',['datalist_search'=>$datalist_search]);
 
     }
-    public function searchresult(){
 
+    public function searchresult(){
 
 
     }
@@ -105,10 +105,10 @@ class HomeController extends Controller
     }
 
     public function login(){
+
         return view('admin.login');
     }
     public function signup(){
-
 
         return view('admin.signup');
     }
@@ -122,7 +122,7 @@ class HomeController extends Controller
         $count=User::where('email',$request->input('email'))->count();
         //$count=$data_user->count();
         //count($data_user);
-        echo $count;
+        //echo $count;
         if($count==1)
         return redirect()->route('signup')->with('error','Bu Mail adresi kullanılıyor');
         else{

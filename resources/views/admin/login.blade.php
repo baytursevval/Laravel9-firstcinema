@@ -26,7 +26,7 @@
                 <div class="card col-lg-4 mx-auto">
                     <div class="card-body px-5 py-5">
                         <h3 class="card-title text-left mb-3">Login</h3>
-                    @include('home.message')
+                        @include('home.message')
                         <form action="{{route('admin_logincheck')}}" method="post">
                             @csrf
                             <div class="form-group">

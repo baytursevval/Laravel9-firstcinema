@@ -6,6 +6,7 @@
 @endsection
 @section('keywords', $setting->keywords)
 
+
 @section('slider')
     <!-- Hero Section Begin -->
 
@@ -25,7 +26,7 @@
                                 <div class="label"> {{$datalist_slider[0]->category->title}}  </div>
                                 <a href="{{route('filmdetay', ['film_id'=>$datalist_slider[0]->id])}}" ><h2>{{$datalist_slider[0]->title}}</h2></a>
 
-                                <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
+                                <a href="{{route('filmfragman',[$datalist_slider[0]->id])}}"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -44,7 +45,7 @@
                                 <div class="label">  {{$datalist_slider[1]->category->title}} </div>
                                 <a href="{{route('filmdetay', ['film_id'=>$datalist_slider[1]->id])}}" ><h2>{{$datalist_slider[1]->title}}</h2></a>
 
-                                <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
+                                <a href="{{route('filmfragman',[$datalist_slider[1]->id])}}"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>
@@ -58,7 +59,7 @@
                                 <div class="label"> {{$datalist_slider[2]->category->title}} </div>
                                 <a href="{{route('filmdetay', ['film_id'=>$datalist_slider[2]->id])}}" ><h2>{{$datalist_slider[2]->title}}</h2></a>
 
-                                <a href="#"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
+                                <a href="{{route('filmfragman',[$datalist_slider[2]->id])}}"><span>Fragman İzle</span> <i class="fa fa-angle-right"></i></a>
                             </div>
                         </div>
                     </div>

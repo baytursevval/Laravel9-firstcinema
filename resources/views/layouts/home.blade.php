@@ -36,7 +36,6 @@
 @include('home._header')
 @yield('slider')
 
-@include('home.product')
 
 @section('content')
 

@@ -21,7 +21,7 @@
                     {!! $setting->aboutus !!}
                 </div>
                 <div class="card-footer">
-                    Footer
+
                 </div>
             </div>
         </section>

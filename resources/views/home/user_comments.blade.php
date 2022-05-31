@@ -26,6 +26,7 @@
                                     <li> <a href="{{route('adminhome')}}" target="_blank">Admin Panel</a> </li>
                                 @endif
                                 <li> <a href="{{route('myprofile')}}"> My profile</a> </li>
+                                <li> <a href="{{route('user_film_like',['user_id'=>Auth::user()->id])}}">My favs</a></li>
                                 <li> <a href="{{route('mycomments')}}"> My comments</a> </li>
                                 <li> <a href="{{route('user_film')}}"> My films</a> </li>
                                 <li> <a href="{{route('admin_logout')}}"> log out</a> </li>

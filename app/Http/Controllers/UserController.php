@@ -42,7 +42,7 @@ class UserController extends Controller
       //  print_r($datalist_like);
         foreach ($datalist_like as $rs)
          echo $rs->film->title."<br>";
-        exit();
+
 
         //$datalist_like=Like::find($user_id)->get();
        // $datalist_like[1]=$datalist_like[0];

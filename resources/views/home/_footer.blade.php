@@ -27,9 +27,9 @@ $setting= \App\Http\Controllers\Admin\SettingController::getSettings()
                 <div class="footer__nav">
                     <ul>
                         <li ><a href="{{route('home')}}" >Homepage</a></li>
-                        <li><a href="./categories.html" target="_blank">Categories</a></li>
+                        <li><a href="#" target="_blank">Categories</a></li>
                         <li><a href="{{route('aboutus')}}" target="_blank">Our Blog</a></li>
-                        <li><a href="#" target="_blank">Contacts</a></li>
+                        <li><a href="{{route('contact')}}" target="_blank">Contacts</a></li>
                     </ul>
                 </div>
             </div>
