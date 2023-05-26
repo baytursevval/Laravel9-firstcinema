@@ -1,0 +1,789 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+- phpMyAdmin XML Dump
+- version 5.2.0
+- https://www.phpmyadmin.net
+-
+- Anamakine: 127.0.0.1
+- Üretim Zamanı: 16 Mar 2023, 15:03:12
+- Sunucu sürümü: 10.4.27-MariaDB
+- PHP Sürümü: 8.2.0
+-->
+
+<pma_xml_export version="1.0" xmlns:pma="https://www.phpmyadmin.net/some_doc_url/">
+    <!--
+    - Structure schemas
+    -->
+    <pma:structure_schemas>
+        <pma:database name="laravel9firstcinema" collation="utf8_turkish_ci" charset="utf8">
+            <pma:table name="categories">
+                CREATE TABLE `categories` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `parent_id` int(11) NOT NULL DEFAULT 0,
+                  `title` varchar(150) NOT NULL,
+                  `keywords` varchar(255) DEFAULT NULL,
+                  `description` varchar(255) DEFAULT NULL,
+                  `image` varchar(100) DEFAULT NULL,
+                  `status` varchar(5) DEFAULT &#039;False&#039;,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="comments">
+                CREATE TABLE `comments` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `comment` varchar(255) DEFAULT NULL,
+                  `rate` int(11) DEFAULT NULL,
+                  `film_id` varchar(255) DEFAULT NULL,
+                  `user_id` int(11) DEFAULT NULL,
+                  `ip` varchar(50) DEFAULT NULL,
+                  `status` varchar(20) NOT NULL DEFAULT &#039;True&#039;,
+                  `saund` varchar(255) DEFAULT NULL,
+                  `display` varchar(255) DEFAULT NULL,
+                  `role` varchar(20) DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="failed_jobs">
+                CREATE TABLE `failed_jobs` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `uuid` varchar(255) NOT NULL,
+                  `connection` text NOT NULL,
+                  `queue` text NOT NULL,
+                  `payload` longtext NOT NULL,
+                  `exception` longtext NOT NULL,
+                  `failed_at` timestamp NOT NULL DEFAULT current_timestamp(),
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="faqs">
+                CREATE TABLE `faqs` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `question` varchar(255) NOT NULL,
+                  `answer` text NOT NULL,
+                  `status` varchar(5) NOT NULL DEFAULT &#039;False&#039;,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="films">
+                CREATE TABLE `films` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `title` varchar(255) DEFAULT NULL,
+                  `keywords` varchar(255) DEFAULT NULL,
+                  `description` varchar(255) DEFAULT NULL,
+                  `image` varchar(255) DEFAULT NULL,
+                  `category_id` varchar(255) DEFAULT NULL,
+                  `detail` text DEFAULT NULL,
+                  `videolink` varchar(255) DEFAULT NULL,
+                  `user_id` varchar(255) DEFAULT NULL,
+                  `status` varchar(255) NOT NULL DEFAULT &#039;False&#039;,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  `image_slider` varchar(255) DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="film_eski">
+                CREATE TABLE `film_eski` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `title` varchar(255) DEFAULT NULL,
+                  `keywords` varchar(255) DEFAULT NULL,
+                  `description` varchar(255) DEFAULT NULL,
+                  `image` varchar(255) DEFAULT NULL,
+                  `category_id` varchar(255) DEFAULT NULL,
+                  `detail` text DEFAULT NULL,
+                  `videolink` varchar(255) DEFAULT NULL,
+                  `user_id` varchar(255) DEFAULT NULL,
+                  `status` varchar(255) NOT NULL DEFAULT &#039;False&#039;,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=21 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="images">
+                CREATE TABLE `images` (
+                  `id` bigint(20) unsigned NOT NULL,
+                  `film_id` int(11) DEFAULT NULL,
+                  `title` varchar(150) NOT NULL,
+                  `image` varchar(75) DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="likes">
+                CREATE TABLE `likes` (
+                  `id` bigint(20) unsigned NOT NULL,
+                  `user_id` int(11) DEFAULT NULL,
+                  `film_id` int(11) DEFAULT NULL,
+                  `like` varchar(255) NOT NULL DEFAULT &#039;False&#039;,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="messages">
+                CREATE TABLE `messages` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `name` varchar(100) NOT NULL,
+                  `email` varchar(50) DEFAULT NULL,
+                  `phone` varchar(20) DEFAULT NULL,
+                  `subject` varchar(100) DEFAULT NULL,
+                  `message` varchar(255) DEFAULT NULL,
+                  `note` varchar(100) DEFAULT NULL,
+                  `status` varchar(7) DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="migrations">
+                CREATE TABLE `migrations` (
+                  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+                  `migration` varchar(255) NOT NULL,
+                  `batch` int(11) NOT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="password_resets">
+                CREATE TABLE `password_resets` (
+                  `email` varchar(255) NOT NULL,
+                  `token` varchar(255) NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  KEY `password_resets_email_index` (`email`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="personal_access_tokens">
+                CREATE TABLE `personal_access_tokens` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `tokenable_type` varchar(255) NOT NULL,
+                  `tokenable_id` bigint(20) unsigned NOT NULL,
+                  `name` varchar(255) NOT NULL,
+                  `token` varchar(64) NOT NULL,
+                  `abilities` text DEFAULT NULL,
+                  `last_used_at` timestamp NULL DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `personal_access_tokens_token_unique` (`token`),
+                  KEY `personal_access_tokens_tokenable_type_tokenable_id_index` (`tokenable_type`,`tokenable_id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="points">
+                CREATE TABLE `points` (
+                  `id` bigint(20) unsigned NOT NULL,
+                  `user_id` int(11) DEFAULT NULL,
+                  `film_id` int(11) DEFAULT NULL,
+                  `point` float NOT NULL DEFAULT 0,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="roles">
+                CREATE TABLE `roles` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `name` varchar(10) NOT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="role_user">
+                CREATE TABLE `role_user` (
+                  `role_id` int(10) unsigned NOT NULL,
+                  `user_id` int(10) unsigned NOT NULL
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="sessions">
+                CREATE TABLE `sessions` (
+                  `id` varchar(255) NOT NULL,
+                  `user_id` bigint(20) unsigned DEFAULT NULL,
+                  `ip_address` varchar(45) DEFAULT NULL,
+                  `user_agent` text DEFAULT NULL,
+                  `payload` text NOT NULL,
+                  `last_activity` int(11) NOT NULL,
+                  PRIMARY KEY (`id`),
+                  KEY `sessions_user_id_index` (`user_id`),
+                  KEY `sessions_last_activity_index` (`last_activity`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="settings">
+                CREATE TABLE `settings` (
+                  `id` bigint(20) unsigned NOT NULL,
+                  `title` varchar(255) DEFAULT NULL,
+                  `keywords` varchar(255) DEFAULT NULL,
+                  `description` varchar(255) DEFAULT NULL,
+                  `company` varchar(150) DEFAULT NULL,
+                  `adress` varchar(150) DEFAULT NULL,
+                  `phone` varchar(20) DEFAULT NULL,
+                  `fax` varchar(20) DEFAULT NULL,
+                  `email` varchar(75) DEFAULT NULL,
+                  `smtpserver` varchar(75) DEFAULT NULL,
+                  `smtpemail` varchar(75) DEFAULT NULL,
+                  `smtppassword` varchar(15) DEFAULT NULL,
+                  `smtpport` varchar(255) DEFAULT &#039;0&#039;,
+                  `facebook` varchar(100) DEFAULT NULL,
+                  `instagram` varchar(100) DEFAULT NULL,
+                  `twitter` varchar(100) DEFAULT NULL,
+                  `youtube` varchar(100) DEFAULT NULL,
+                  `aboutus` text DEFAULT NULL,
+                  `contact` text DEFAULT NULL,
+                  `references` text DEFAULT NULL,
+                  `status` varchar(5) DEFAULT &#039;False&#039;,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`)
+                ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+            <pma:table name="users">
+                CREATE TABLE `users` (
+                  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                  `name` varchar(255) NOT NULL,
+                  `email` varchar(255) NOT NULL,
+                  `email_verified_at` timestamp NULL DEFAULT NULL,
+                  `password` varchar(255) NOT NULL,
+                  `two_factor_secret` text DEFAULT NULL,
+                  `two_factor_recovery_codes` text DEFAULT NULL,
+                  `remember_token` varchar(100) DEFAULT NULL,
+                  `current_team_id` bigint(20) unsigned DEFAULT NULL,
+                  `profile_photo_path` varchar(2048) DEFAULT NULL,
+                  `created_at` timestamp NULL DEFAULT NULL,
+                  `updated_at` timestamp NULL DEFAULT NULL,
+                  PRIMARY KEY (`id`),
+                  UNIQUE KEY `users_email_unique` (`email`)
+                ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+            </pma:table>
+        </pma:database>
+    </pma:structure_schemas>
+
+    <!--
+    - Veritabanı: 'laravel9firstcinema'
+    -->
+    <database name="laravel9firstcinema">
+        <!-- Tablo categories -->
+        <table name="categories">
+            <column name="id">1</column>
+            <column name="parent_id">0</column>
+            <column name="title">Aksiyon</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">NULL</column>
+            <column name="status">False</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+        </table>
+        <table name="categories">
+            <column name="id">2</column>
+            <column name="parent_id">0</column>
+            <column name="title">Animasyon</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">NULL</column>
+            <column name="status">False</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+        </table>
+        <table name="categories">
+            <column name="id">3</column>
+            <column name="parent_id">0</column>
+            <column name="title">Bilim Kurgu</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">image3</column>
+            <column name="status">False</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+        </table>
+        <table name="categories">
+            <column name="id">4</column>
+            <column name="parent_id">0</column>
+            <column name="title">Gerilim</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">NULL</column>
+            <column name="status">False</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+        </table>
+        <table name="categories">
+            <column name="id">5</column>
+            <column name="parent_id">0</column>
+            <column name="title">Komedi</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">img5</column>
+            <column name="status">False</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+        </table>
+        <table name="categories">
+            <column name="id">13</column>
+            <column name="parent_id">0</column>
+            <column name="title">sil2</column>
+            <column name="keywords">dddd</column>
+            <column name="description">ddd</column>
+            <column name="image">NULL</column>
+            <column name="status">False</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">2022-04-24 08:41:04</column>
+        </table>
+        <!-- Tablo comments -->
+        <table name="comments">
+            <column name="id">1</column>
+            <column name="comment">yorumsuz</column>
+            <column name="rate">NULL</column>
+            <column name="film_id">59</column>
+            <column name="user_id">1</column>
+            <column name="ip">NULL</column>
+            <column name="status">True</column>
+            <column name="saund">NULL</column>
+            <column name="display">NULL</column>
+            <column name="role">NULL</column>
+            <column name="created_at">2022-04-27 10:10:33</column>
+            <column name="updated_at">2022-05-03 18:58:48</column>
+        </table>
+        <table name="comments">
+            <column name="id">3</column>
+            <column name="comment">Yorum 2</column>
+            <column name="rate">NULL</column>
+            <column name="film_id">59</column>
+            <column name="user_id">1</column>
+            <column name="ip">NULL</column>
+            <column name="status">True</column>
+            <column name="saund">NULL</column>
+            <column name="display">NULL</column>
+            <column name="role">NULL</column>
+            <column name="created_at">2022-04-27 10:28:17</column>
+            <column name="updated_at">2022-04-27 10:28:17</column>
+        </table>
+        <table name="comments">
+            <column name="id">4</column>
+            <column name="comment">Film kötü</column>
+            <column name="rate">NULL</column>
+            <column name="film_id">59</column>
+            <column name="user_id">1</column>
+            <column name="ip">NULL</column>
+            <column name="status">True</column>
+            <column name="saund">NULL</column>
+            <column name="display">NULL</column>
+            <column name="role">NULL</column>
+            <column name="created_at">2022-04-27 10:28:38</column>
+            <column name="updated_at">2022-04-27 10:28:38</column>
+        </table>
+        <table name="comments">
+            <column name="id">7</column>
+            <column name="comment">güzel</column>
+            <column name="rate">NULL</column>
+            <column name="film_id">59</column>
+            <column name="user_id">2</column>
+            <column name="ip">NULL</column>
+            <column name="status">True</column>
+            <column name="saund">NULL</column>
+            <column name="display">NULL</column>
+            <column name="role">NULL</column>
+            <column name="created_at">2022-05-01 08:31:54</column>
+            <column name="updated_at">2022-05-01 11:35:00</column>
+        </table>
+        <table name="comments">
+            <column name="id">8</column>
+            <column name="comment">--</column>
+            <column name="rate">NULL</column>
+            <column name="film_id">59</column>
+            <column name="user_id">2</column>
+            <column name="ip">NULL</column>
+            <column name="status">True</column>
+            <column name="saund">NULL</column>
+            <column name="display">NULL</column>
+            <column name="role">NULL</column>
+            <column name="created_at">2022-05-04 06:42:26</column>
+            <column name="updated_at">2022-05-04 06:42:26</column>
+        </table>
+        <table name="comments">
+            <column name="id">9</column>
+            <column name="comment">berbattt</column>
+            <column name="rate">NULL</column>
+            <column name="film_id">59</column>
+            <column name="user_id">2</column>
+            <column name="ip">NULL</column>
+            <column name="status">True</column>
+            <column name="saund">NULL</column>
+            <column name="display">NULL</column>
+            <column name="role">NULL</column>
+            <column name="created_at">2022-05-04 06:44:45</column>
+            <column name="updated_at">2022-05-04 06:44:45</column>
+        </table>
+        <table name="comments">
+            <column name="id">10</column>
+            <column name="comment">berbattt</column>
+            <column name="rate">NULL</column>
+            <column name="film_id">59</column>
+            <column name="user_id">2</column>
+            <column name="ip">NULL</column>
+            <column name="status">True</column>
+            <column name="saund">NULL</column>
+            <column name="display">NULL</column>
+            <column name="role">NULL</column>
+            <column name="created_at">2022-05-04 06:49:17</column>
+            <column name="updated_at">2022-05-04 06:49:17</column>
+        </table>
+        <!-- Tablo failed_jobs -->
+        <!-- Tablo faqs -->
+        <!-- Tablo films -->
+        <table name="films">
+            <column name="id">1</column>
+            <column name="title">Son Şovalye</column>
+            <column name="keywords">NULL</column>
+            <column name="description">HD </column>
+            <column name="image">/filmresim/sovalye.jpg</column>
+            <column name="category_id">1</column>
+            <column name="detail">Transformers: The Last Knight filminin posterindeki bu önemli yazı bizlere gerçekten de Bumblebee’nin Optimus Prime tarafından öldürülmüş olabileceğini düşündürüyor. Film posterinde Optimus Prime devasa bir kılıcı tutarken hemen sağ alt köşede Bumblebee’nin eli görünüyor. Elbette bu Bumblebee’nin öldüğünü net olarak teyit etmez, ancak bu durum Optimus Prime’ın son defa seride yer alacağına ve onun yerine yeni bir grup Transformers’ın seriye devam edeceğine dair olan dedikoduları bir şekilde doğrulamış oluyor. Eğer durum böyle ise Bumblebee’nin de Optimus Prime tarafından öldürülmüş olma olasılığı bulunuyor!
+
+Transformers: Son Şövalye film serisinin eski oyuncuları da yeniden filme dâhil olacak ve bu yüzden de Mark Wahlberg, Tyrese Gibson, John Turturro ve Josh Duhamel gibi isimlerde yeniden serinin bu muhteşem bölümünde rol alacaklar.
+
+
+</column>
+            <column name="videolink">NULL</column>
+            <column name="user_id">NULL</column>
+            <column name="status">True</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+            <column name="image_slider">NULL</column>
+        </table>
+        <table name="films">
+            <column name="id">2</column>
+            <column name="title">X-Men Kıyamet </column>
+            <column name="keywords">HD</column>
+            <column name="description">..</column>
+            <column name="image">/filmresim/xmen.jpg</column>
+            <column name="category_id">1</column>
+            <column name="detail">Günümüzde pek çok çizgi roman kahramanı, Örümcek Adam’ ın gişede elde etmiş olduğu başarının ardından birer ikişer sinemaya transfer olmaya başlamıştır. Özellikle de çizgisel dünyaları sinema perdesine aktarma konusunda bir hayli tecrübeli olan Sony stüdyoları aracılığıyla karşımıza çıkan yapımlar, izleyicisine birbirinden farlı sinemasal anlar yaşatmaktadır. Bununla birlikte Wolwerine karakteriyle özdeşleşmiş olan X- Men serisi, hemen hemen iki senede bir izleyici ile buluşmaya başlamıştır. Öyle ki Marvel yapımı karakter ve hikayelerin geniş kapsamlı bir işleyişle şekillendirilmesi açısından bir hayli önemli olan bu filmlerde, mutant dünyasının nasıl kahramanlaştığına dair hd film izle formatında sunulan sağlam öykülere tanıklık ettik. Pek çok film otoritesi içinde de önemli bir bakış açısı taşımakta olan bu serinin son durağı ise X- Men Apocalyspse – X –Men Kıyamet olmaktadır. 2016 yılı filmleri içerisinde en fazla merak edilen yapımlar kategorisinde kendisine yer alan bu filmimizin ana konusuna geçiş yapmadan önce; Wolwerine karakteriyle kendisini özdeşleştirmiş olan ünlü oyuncu Hugh Jackman’ ı bu filminde ki konuk performansının ardından sadece bir adet X – Men serisinde daha izleme imkanı yakalayacağımızı söylemek isteriz. Keza oyuncunun yaklaşık 15 senedir sürdürdüğü bu karaktere veda etme zamanının geldiğini açıklaması birçok Marvel hayranını derin üzüntüye soktu. Bununla birlikte X – Men Apocalyose – X – Men Kıyamet alt yazılı izle olarak tanıklık etme şansına erişeceğimiz filmin ana konusu şimdiden heyecanlandırmayı başarıyor...</column>
+            <column name="videolink">NULL</column>
+            <column name="user_id">NULL</column>
+            <column name="status">False</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+            <column name="image_slider">NULL</column>
+        </table>
+        <table name="films">
+            <column name="id">15</column>
+            <column name="title">NULL</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">images/q1IgkYmJ11BSBJEdTaVB07WrxYf5Mo0b3w2NtjVo.png</column>
+            <column name="category_id">1</column>
+            <column name="detail">NULL</column>
+            <column name="videolink">NULL</column>
+            <column name="user_id">1</column>
+            <column name="status">True</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+            <column name="image_slider">NULL</column>
+        </table>
+        <table name="films">
+            <column name="id">16</column>
+            <column name="title">NULL</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">images/0m4E8UJ4xUkQLRJ0PzZHhAKHBvyFDCELnmPFL8LH.png</column>
+            <column name="category_id">1</column>
+            <column name="detail">NULL</column>
+            <column name="videolink">NULL</column>
+            <column name="user_id">1</column>
+            <column name="status">True</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+            <column name="image_slider">NULL</column>
+        </table>
+        <table name="films">
+            <column name="id">18</column>
+            <column name="title">NULL</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">images/JINCBqaPvcApzeSh1pvUQPin5u2eoncirzK4AJWz.png</column>
+            <column name="category_id">1</column>
+            <column name="detail">NULL</column>
+            <column name="videolink">NULL</column>
+            <column name="user_id">1</column>
+            <column name="status">True</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+            <column name="image_slider">NULL</column>
+        </table>
+        <table name="films">
+            <column name="id">19</column>
+            <column name="title">Son Şovalye</column>
+            <column name="keywords">d</column>
+            <column name="description">NULL</column>
+            <column name="image">images/tNRDbpM71RnK5VVnIRKce5AEqYDVdwVXTgmKMU48.png</column>
+            <column name="category_id">NULL</column>
+            <column name="detail">NULL</column>
+            <column name="videolink">NULL</column>
+            <column name="user_id">1</column>
+            <column name="status">dd</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+            <column name="image_slider">NULL</column>
+        </table>
+        <table name="films">
+            <column name="id">20</column>
+            <column name="title">Son Şovalye</column>
+            <column name="keywords">NULL</column>
+            <column name="description">NULL</column>
+            <column name="image">images/03rIMEj623B9I3QV7YvVCL0p46fVCVWDQ585sksp.jpg</column>
+            <column name="category_id">NULL</column>
+            <column name="detail">NULL</column>
+            <column name="videolink">NULL</column>
+            <column name="user_id">1</column>
+            <column name="status">dd</column>
+            <column name="created_at">NULL</column>
+            <column name="updated_at">NULL</column>
+            <column name="image_slider">NULL</column>
+        </table>
+        <!-- Tablo film_eski -->
+        <!-- Tablo images -->
+        <table name="images">
+            <column name="id">1</column>
+            <column name="film_id">59</column>
+            <column name="title">fdf</column>
+            <column name="image">images/Bqq8rB1kCe2in9WmmCOhYszggQKkdCAuhvELXfCM.jpg</column>
+            <column name="created_at">2022-04-24 10:39:53</column>
+            <column name="updated_at">2022-04-24 10:39:53</column>
+        </table>
+        <!-- Tablo likes -->
+        <table name="likes">
+            <column name="id">5</column>
+            <column name="user_id">2</column>
+            <column name="film_id">42</column>
+            <column name="like">False</column>
+            <column name="created_at">2022-05-02 13:08:31</column>
+            <column name="updated_at">2022-05-02 13:25:01</column>
+        </table>
+        <!-- Tablo messages -->
+        <!-- Tablo migrations -->
+        <table name="migrations">
+            <column name="id">9</column>
+            <column name="migration">2022_04_20_200006_film</column>
+            <column name="batch">3</column>
+        </table>
+        <table name="migrations">
+            <column name="id">10</column>
+            <column name="migration">2022_04_20_200102_create_films_table</column>
+            <column name="batch">4</column>
+        </table>
+        <table name="migrations">
+            <column name="id">54</column>
+            <column name="migration">2014_10_12_000000_create_users_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">55</column>
+            <column name="migration">2014_10_12_100000_create_password_resets_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">56</column>
+            <column name="migration">2014_10_12_200000_add_two_factor_columns_to_users_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">57</column>
+            <column name="migration">2019_08_19_000000_create_failed_jobs_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">58</column>
+            <column name="migration">2019_12_14_000001_create_personal_access_tokens_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">59</column>
+            <column name="migration">2022_03_19_153128_create_sessions_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">60</column>
+            <column name="migration">2022_04_10_131012_create_categories_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">61</column>
+            <column name="migration">2022_04_14_160102_category</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">62</column>
+            <column name="migration">2022_04_22_131332_image</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">63</column>
+            <column name="migration">2022_04_26_105051_setting</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">64</column>
+            <column name="migration">2022_04_27_093915_comment</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">65</column>
+            <column name="migration">2022_05_02_121518_like</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">66</column>
+            <column name="migration">2022_05_14_124455_create_messages_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">67</column>
+            <column name="migration">2022_05_14_124955_message</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">68</column>
+            <column name="migration">2022_05_19_123516_create_faqs_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">69</column>
+            <column name="migration">2022_05_19_123905_faq</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">70</column>
+            <column name="migration">2022_05_25_110840_create_roles_table</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">71</column>
+            <column name="migration">2022_05_25_111055_roles</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">72</column>
+            <column name="migration">2022_05_25_112254_role_user</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">73</column>
+            <column name="migration">2023_03_13_134834_sessions</column>
+            <column name="batch">5</column>
+        </table>
+        <table name="migrations">
+            <column name="id">74</column>
+            <column name="migration">2023_03_15_105640_film</column>
+            <column name="batch">5</column>
+        </table>
+        <!-- Tablo password_resets -->
+        <!-- Tablo personal_access_tokens -->
+        <!-- Tablo points -->
+        <table name="points">
+            <column name="id">5</column>
+            <column name="user_id">1</column>
+            <column name="film_id">59</column>
+            <column name="point">1</column>
+            <column name="created_at">2022-04-27 12:17:18</column>
+            <column name="updated_at">2022-04-27 12:17:18</column>
+        </table>
+        <table name="points">
+            <column name="id">6</column>
+            <column name="user_id">1</column>
+            <column name="film_id">35</column>
+            <column name="point">1</column>
+            <column name="created_at">2022-05-01 16:37:18</column>
+            <column name="updated_at">2022-05-01 16:37:18</column>
+        </table>
+        <table name="points">
+            <column name="id">13</column>
+            <column name="user_id">2</column>
+            <column name="film_id">59</column>
+            <column name="point">8</column>
+            <column name="created_at">2022-05-02 11:54:09</column>
+            <column name="updated_at">2022-05-02 11:54:09</column>
+        </table>
+        <table name="points">
+            <column name="id">14</column>
+            <column name="user_id">2</column>
+            <column name="film_id">46</column>
+            <column name="point">5</column>
+            <column name="created_at">2022-05-02 11:57:31</column>
+            <column name="updated_at">2022-05-02 11:57:31</column>
+        </table>
+        <table name="points">
+            <column name="id">15</column>
+            <column name="user_id">2</column>
+            <column name="film_id">42</column>
+            <column name="point">4</column>
+            <column name="created_at">2022-05-02 12:32:06</column>
+            <column name="updated_at">2022-05-02 12:32:06</column>
+        </table>
+        <table name="points">
+            <column name="id">16</column>
+            <column name="user_id">2</column>
+            <column name="film_id">34</column>
+            <column name="point">4</column>
+            <column name="created_at">2022-05-04 09:01:04</column>
+            <column name="updated_at">2022-05-04 09:01:04</column>
+        </table>
+        <!-- Tablo roles -->
+        <!-- Tablo role_user -->
+        <!-- Tablo sessions -->
+        <table name="sessions">
+            <column name="id">AX5UKW69eTgCNhsuCvGbgDuqB52nDkKul1U44OJW</column>
+            <column name="user_id">1</column>
+            <column name="ip_address">127.0.0.1</column>
+            <column name="user_agent">Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/111.0.0.0 Safari/537.36</column>
+            <column name="payload">YTo2OntzOjY6Il90b2tlbiI7czo0MDoiNVp4aHNFdEpiS0c3U01wZjF6U09walhkaUdKNWV4MVhWanJWaU83diI7czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319czo5OiJfcHJldmlvdXMiO2E6MTp7czozOiJ1cmwiO3M6MzM6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbi9sb2dpbiI7fXM6MzoidXJsIjthOjE6e3M6ODoiaW50ZW5kZWQiO3M6Mjc6Imh0dHA6Ly8xMjcuMC4wLjE6ODAwMC9hZG1pbiI7fXM6NTA6ImxvZ2luX3dlYl81OWJhMzZhZGRjMmIyZjk0MDE1ODBmMDE0YzdmNThlYTRlMzA5ODlkIjtpOjE7czoxNzoicGFzc3dvcmRfaGFzaF93ZWIiO3M6NjA6IiQyeSQxMCR2MUx3dDlJV0UuLnhtblpNdkFYY1NPM0p2dk9qdUg0VlkvaklCd2R0My9saVIvVEV5d3MzMiI7fQ==</column>
+            <column name="last_activity">1678879590</column>
+        </table>
+        <!-- Tablo settings -->
+        <table name="settings">
+            <column name="id">3</column>
+            <column name="title">CinemaVizyon</column>
+            <column name="keywords">BilimKurgu, Macera, Korku, Komedi, Animasyon</column>
+            <column name="description">Cinema Vizyon</column>
+            <column name="company">Cinema Vizyon A.Ş.</column>
+            <column name="adress">Karabuk</column>
+            <column name="phone">0</column>
+            <column name="fax">NULL</column>
+            <column name="email">NULL</column>
+            <column name="smtpserver">NULL</column>
+            <column name="smtpemail">NULL</column>
+            <column name="smtppassword">NULL</column>
+            <column name="smtpport">0</column>
+            <column name="facebook">NULL</column>
+            <column name="instagram">NULL</column>
+            <column name="twitter">NULL</column>
+            <column name="youtube">NULL</column>
+            <column name="aboutus">NULL</column>
+            <column name="contact">NULL</column>
+            <column name="references">NULL</column>
+            <column name="status">False</column>
+            <column name="created_at">2022-04-26 12:48:28</column>
+            <column name="updated_at">2022-04-28 15:13:00</column>
+        </table>
+        <!-- Tablo users -->
+        <table name="users">
+            <column name="id">1</column>
+            <column name="name">sevval</column>
+            <column name="email">sevvalbaytur@hotmail.com</column>
+            <column name="email_verified_at">NULL</column>
+            <column name="password">$2y$10$v1Lwt9IWE..xmnZMvAXcSO3JvvOjuH4VY/jIBwdt3/liR/TEyws32</column>
+            <column name="two_factor_secret">NULL</column>
+            <column name="two_factor_recovery_codes">NULL</column>
+            <column name="remember_token">NULL</column>
+            <column name="current_team_id">NULL</column>
+            <column name="profile_photo_path">NULL</column>
+            <column name="created_at">2023-03-15 11:16:35</column>
+            <column name="updated_at">2023-03-15 11:16:35</column>
+        </table>
+    </database>
+</pma_xml_export>
